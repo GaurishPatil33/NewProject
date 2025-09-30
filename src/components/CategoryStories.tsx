@@ -151,7 +151,7 @@ const CategoryStories = () => {
               whileTap={{ scale: 0.95 }}
               className="flex-shrink-0 cursor-pointer"
             >
-              <div className="relative size-14 rounded-full overflow-hidden shadow-lg">
+              <div className="relative size-16 rounded-full overflow-hidden shadow-lg">
                 <img
                   src={cat.image}
                   alt={cat.title}
@@ -159,7 +159,7 @@ const CategoryStories = () => {
                 />
                 <div className="absolute inset-0 bg-black/20 w-full h-full" />
               </div>
-              <div className="text-[9px] font-medium text-[#900001] text-center max-w-20 truncate">
+              <div className="text-[11px] font-medium text-[#900001] text-center max-w-20 truncate">
                 {cat.title}
               </div>
             </motion.div>
