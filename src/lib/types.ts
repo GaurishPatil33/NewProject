@@ -14,15 +14,18 @@ export interface Product {
   rating: number;
   reviews: Review[];
   sku: string;
-  availabilityStatus:string;
+  availabilityStatus: string;
   stock: number;
   shippingInformation: string;
   returnPolicy: string;
+  updatedAt: string
+  sales: number
+  isTrending: boolean
 }
 
 
 export interface Review {
-  username: string; 
+  username: string;
   rating: number;
   reviewTitle: string;
   comment: string;
@@ -31,14 +34,14 @@ export interface Review {
 
 
 export interface CartItem {
-    product: Product
-    price: number
-    quantity: number
-    attributes?: { name: string, value: string }[]
-    sku?: string
-    selected?: boolean
+  product: Product
+  price: number
+  quantity: number
+  attributes?: { name: string, value: string }[]
+  sku?: string
+  selected?: boolean
 }
 
 export interface WishlistItem extends Product {
-    product: Product
+  product: Product
 }

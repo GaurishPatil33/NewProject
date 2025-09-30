@@ -23,7 +23,7 @@ const CheckoutProductList = () => {
             className="flex items-center px-2  gap-2 md:gap-3 w-full"
           >
             <div className=" relative flex items-center gap-2 w-20  rounded overflow-hidden shadow-md">
-              <Image
+              <img
                 src={p.product.images[0]}
                 alt={p.product.title}
                 className="w-full h-full object-cover "

@@ -139,7 +139,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-30T08:00:00.000Z",
+        sales: 150,
+        isTrending: true
     },
     {
         id: 2,
@@ -222,7 +224,9 @@ export const products = [
         stock: 20,
         shippingInformation: "Estimated delivery in 3-4 days",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-29T10:15:00.000Z",
+        sales: 120,
+        isTrending: false
     },
     {
         id: 3,
@@ -304,7 +308,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-27T09:00:00.000Z",
+        sales: 95,
+        isTrending: false
     },
     {
         id: 4,
@@ -386,7 +392,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-26T12:45:00.000Z",
+        sales: 200,
+        isTrending: true
     },
     {
         id: 5,
@@ -469,7 +477,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-25T11:20:00.000Z",
+        sales: 80,
+        isTrending: false
     },
     {
         id: 6,
@@ -552,7 +562,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-24T15:10:00.000Z",
+        sales: 140,
+        isTrending: true
     },
     {
         id: 7,
@@ -634,7 +646,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-23T08:55:00.000Z",
+        sales: 170,
+        isTrending: true
     },
     {
         id: 8,
@@ -719,7 +733,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-22T13:40:00.000Z",
+        sales: 130,
+        isTrending: false
     },
     {
         id: 9,
@@ -802,7 +818,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-24T13:40:00.000Z",
+        sales: 130,
+        isTrending: false
     },
     {
         id: 10,
@@ -887,7 +905,9 @@ export const products = [
         stock: 10,
         shippingInformation: "Ships in 1 week",
         returnPolicy: "7 day return",
-
+        updatedAt: "2025-09-22T13:40:00.000Z",
+        sales: 230,
+        isTrending: true
     },
 ]
 

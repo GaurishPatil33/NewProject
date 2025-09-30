@@ -93,6 +93,7 @@ const ListingPageContent = () => {
     availability: [],
     // discount: discount ? [discount.toString()] : [],
     rating: [],
+    badges: [],
   });
 
   const [activeSlider, setActiveSlider] = useState<"min" | "max" | null>(null);
@@ -247,6 +248,36 @@ const ListingPageContent = () => {
     if (filters.discount?.length > 0) {
       const minDiscount = Math.min(...filters.discount.map(Number));
       filtered = filtered.filter((p) => (p.discount || 0) >= minDiscount);
+    }
+
+    if (filters.badges?.length > 0) {
+      filters.badges.forEach((badge) => {
+        switch (badge) {
+          case "crazyDeal":
+            filtered = filtered.filter((p) => p.discount > 30);
+            break;
+
+          case "newArriwals":
+            filtered = filtered.sort(
+              (a, b) =>
+                new Date(a.updatedAt).getTime() -
+                new Date(b.updatedAt).getTime()
+            );
+            break;
+
+          case "bestSellers":
+            filtered = filtered.filter((p) => p.sales > 150);
+            break;
+
+          case "under5000":
+            filtered = filtered.filter((p) => p.price < 5000);
+            break;
+
+          case "trending":
+            filtered = filtered.filter((p) => p.isTrending);
+            break;
+        }
+      });
     }
 
     if (sort) {
@@ -682,26 +713,31 @@ const ListingPageContent = () => {
           {[
             {
               title: "Crazy Deal",
+              key: "crazyDeal",
               icon: TbCircleDashedPercentage,
               color: "text-purple-400 border-purple-300 bg-purple-100",
             },
             {
               title: "New Arrivals",
+              key: "newArriwals",
               icon: MdFiberNew,
               color: "text-blue-400 border-blue-300 bg-blue-100",
             },
             {
               title: "Best Sellers",
+              key: "bestSellers",
               icon: FaFire,
               color: "text-orange-400 border-orange-300 bg-orange-100",
             },
             {
               title: "Under 5000",
+              key: "under5000",
               icon: LuBadgeIndianRupee,
               color: "text-green-400 border-green-300 bg-green-100",
             },
             {
               title: "Trending",
+              key: "trending",
               icon: FaArrowTrendUp,
               color: "text-red-400 border-red-300 bg-red-100",
             },
