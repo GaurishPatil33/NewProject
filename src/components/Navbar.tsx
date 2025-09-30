@@ -99,7 +99,7 @@ const Navbar = () => {
               className="flex items-center justify-between w-fit gap-1.5 md:gap-3"
             >
               <motion.div
-                className="cursor-pointer size-13  flex items-center py-0.5 gap-1 md:gap-2"
+                className="cursor-pointer size-13 md:size-12  flex items-center py-0.5 gap-1 md:gap-2"
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
               >
@@ -136,7 +136,7 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="flex items-center justify-between gap-1 w-full md:gap-4">
+          <div className="flex items-center justify-between gap-1 w-full md:w-fit md:gap-4">
             {/* Search */}
             <div className=" md:block w-full   right-0">
               <Search />

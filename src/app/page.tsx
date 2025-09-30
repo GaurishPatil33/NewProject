@@ -58,6 +58,7 @@ export default function Home() {
         displayType={isMobile ? "grid" : "slider"}
       />
 
+      <ProductList products={sarees} title="Best Seller - Sarees" />
       {/* Shop by Occasion */}
       <CategoryList
         data={occasions}
@@ -66,7 +67,6 @@ export default function Home() {
       />
 
       {/* products */}
-      <ProductList products={sarees} title="Best Seller - Sarees" />
       <ProductList products={kurtas} title="Best Seller - Kurtas/Salwars" />
     </div>
   );

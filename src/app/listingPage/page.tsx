@@ -74,6 +74,7 @@ const ListingPageContent = () => {
     () => searchParams.getAll("availability"),
     [searchParams]
   );
+  const badges = useMemo(() => searchParams.getAll("badges"), [searchParams]);
 
   const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({
     min: 0,
@@ -105,6 +106,7 @@ const ListingPageContent = () => {
       discount: discount || [],
       availability: availability || [],
       rating: rating ? [rating?.toString()] : [],
+      badges: badges || [],
     });
   }, [categories, brands, discount, rating]);
 
@@ -393,8 +395,8 @@ const ListingPageContent = () => {
     updateUrlParams(updated, {});
   };
 
-  const filterContent = (filter?: FilterProps) => {
-    const currentFilter = filterOptions.find((f) => f.id === activeFilter);
+  const filterContent = (filter?: FilterProps,filterOptions?:FilterProps[]) => {
+    const currentFilter = filterOptions?.find((f) => f.id === activeFilter);
     if (!currentFilter) return null;
     // console.log(currentFilter);
     // console.log(filter);
@@ -651,7 +653,7 @@ const ListingPageContent = () => {
   };
 
   return (
-    <div className="relative  md:px-6 xl:px-10 mb-8 pt-3 md:pt-6">
+    <div className="relative  md:px-6 xl:px-10 mb-8 pt-4 md:pt-6">
       <h1 className="text-lg md:hidden px-2 font-semibold">
         {search ? (
           <>
@@ -709,7 +711,7 @@ const ListingPageContent = () => {
         </div>
 
         {/* mobile capsule filters */}
-        <div className="md:hidden flex items-center pl-2 mt-1 justify overflow-x-auto gap-2 snap-x snap-mandatory scroll-smooth scrollbar-hide -mb-2">
+        <div className="md:hidden flex  items-center pl-2 mt-1 py-1 justify overflow-x-auto gap-2 snap-x snap-mandatory scroll-smooth scrollbar-hide -mb-2">
           {[
             {
               title: "Crazy Deal",
@@ -741,17 +743,36 @@ const ListingPageContent = () => {
               icon: FaArrowTrendUp,
               color: "text-red-400 border-red-300 bg-red-100",
             },
-          ].map((item, i) => (
-            <div
-              className={` flex items-center w-full justify-center  rounded-full border ${item.color} px-2 py-1 cursor-pointer gap-1`}
-              key={i}
-            >
-              <item.icon className="size-4" />
-              <div className=" text-xs font-semibold truncate">
-                {item.title}
-              </div>
-            </div>
-          ))}
+          ]
+            .reverse()
+            .map((item, i) => {
+              const isActive = filters.badges?.[0] === item.key;
+              return (
+                <div
+                  key={i}
+                  onClick={() => {
+                    const newBadges = isActive
+                      ? filters.badges.filter((b) => b !== item.key)
+                      : [...(filters.badges || []), item.key];
+
+                    const updatedFilters = {
+                      ...filters,
+                      badges: isActive ? [] : [item.key],
+                    };
+                    setFilters(updatedFilters);
+                    updateUrlParams(updatedFilters, {});
+                  }}
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 ${
+                    item.color
+                  } ${isActive ? "scale-105 " : "hover:scale-105"}`}
+                >
+                  <item.icon className="size-4" />
+                  <div className=" text-xs font-semibold truncate">
+                    {item.title}
+                  </div>
+                </div>
+              );
+            })}
         </div>
 
         <div className=" w-full h-full flex flex-col justify-between">
@@ -859,6 +880,9 @@ const ListingPageContent = () => {
                     <ProductCard product={p} key={p.id} />
                   ))}
                 </div>
+                {paginatedProducts.length <= 0 && !loading && (
+                  <div className=" p-3">Products not found! Try to adjust your filters </div>
+                )}
               </>
             ) : (
               <Skeleton />
