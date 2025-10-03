@@ -63,7 +63,6 @@ const CheckoutProductList = () => {
                     </button>
                   </div>
                   <div className=" text-xs md:text-sm text-gray-500">
-                    {" "}
                     ₹{p.price * p.quantity}
                   </div>
                 </div>

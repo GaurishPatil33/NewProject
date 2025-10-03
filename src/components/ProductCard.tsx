@@ -232,7 +232,7 @@ const ProductCard = ({
           {product.title}
         </span>
         <div className=" flex gap-2 items-center justify-center">
-          <div className=" text-gray-900 text-sm font-medium">
+          <div className=" text-gray-900 text-lg font-medium">
             ₹{product.price}
           </div>
           <span className=" text-gray-500 text-sm line-through ">

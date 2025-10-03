@@ -2,7 +2,7 @@
 import CategoryList from "@/components/CategoryList";
 import CategoryStories from "@/components/CategoryStories";
 import FeatureStrip from "@/components/FeaturesStrip";
-import ImageBanner from "@/components/ImageBanner";
+import { ImageBanner2 } from "@/components/ImageBanner";
 import ProductList from "@/components/ProductList";
 import { Categories, occasions } from "@/lib/data";
 import { fetchAllProducts } from "@/lib/productfetching";
@@ -47,7 +47,7 @@ export default function Home() {
         {" "}
         <CategoryStories />
       </div>
-      <ImageBanner />
+      <ImageBanner2 />
 
       <FeatureStrip />
 

@@ -3,6 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
+import { Pagination, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 const bannerImages = [
   {
     id: 1,
@@ -26,8 +29,30 @@ const bannerImages = [
       "https://www.taneira.com/dw/image/v2/BKMH_PRD/on/demandware.static/-/Sites-Taneira-Library/default/dwd61f58f6/HomePage/Banners/best-buy/Web_Banner_USKD.jpg",
   },
 ];
+const bannerImages2 = [
+  {
+    id: 1,
+    img: "/banner/1.png",
+  },
+  {
+    id: 2,
+    img: "/banner/2.png",
+  },
+  {
+    id: 3,
+    img: "/banner/3.png",
+  },
+  {
+    id: 4,
+    img: "/banner/4.png",
+  },
+  {
+    id: 5,
+    img: "/banner/5.png",
+  },
+];
 
-const ImageBanner = () => {
+export const ImageBanner = () => {
   const [current, setCurrent] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -58,7 +83,11 @@ const ImageBanner = () => {
       <AnimatePresence mode="wait">
         <motion.img
           key={current}
-          src={isMobile ? bannerImages[current].imgMob : bannerImages[current].imgDesk}
+          src={
+            isMobile
+              ? bannerImages[current].imgMob
+              : bannerImages[current].imgDesk
+          }
           alt={`Banner ${current + 1}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -72,9 +101,7 @@ const ImageBanner = () => {
       <button
         aria-label="Previous Banner"
         onClick={() =>
-          setCurrent((prev) =>
-            prev <= 0 ? bannerImages.length - 1 : prev - 1
-          )
+          setCurrent((prev) => (prev <= 0 ? bannerImages.length - 1 : prev - 1))
         }
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/70 text-gray-900 p-2 rounded-full transition z-10"
       >
@@ -111,4 +138,45 @@ const ImageBanner = () => {
   );
 };
 
-export default ImageBanner;
+export const ImageBanner2 = () => {
+  return (
+    <div className="w-full relative group">
+      <Swiper
+        modules={[Navigation, Pagination]}
+        navigation={{
+          nextEl: ".swiper-next",
+          prevEl: ".swiper-prev",
+        }}
+        pagination={{ clickable: true }}
+        loop={true}
+        autoplay={{
+          delay: 300,
+          disableOnInteraction: false,
+        }}
+        className=" overflow-hidden"
+      >
+        {bannerImages2.map((slide, i) => (
+          <SwiperSlide key={i}>
+            <div className="relative w-full aspect-[12/15]">
+              <img
+                src={slide.img}
+                alt={slide.id.toString()}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Custom Prev Button */}
+      <button className="swiper-prev hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm h-11 w-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+
+      {/* Custom Next Button */}
+      <button className="swiper-next hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm h-11 w-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+        <ChevronRight className="w-5 h-5" />
+      </button>
+    </div>
+  );
+};
