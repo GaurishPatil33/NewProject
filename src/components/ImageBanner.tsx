@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const bannerImages = [
@@ -142,7 +142,7 @@ export const ImageBanner2 = () => {
   return (
     <div className="w-full relative group">
       <Swiper
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         navigation={{
           nextEl: ".swiper-next",
           prevEl: ".swiper-prev",
@@ -150,7 +150,7 @@ export const ImageBanner2 = () => {
         pagination={{ clickable: true }}
         loop={true}
         autoplay={{
-          delay: 300,
+          delay: 1500,
           disableOnInteraction: false,
         }}
         className=" overflow-hidden"
@@ -169,12 +169,12 @@ export const ImageBanner2 = () => {
       </Swiper>
 
       {/* Custom Prev Button */}
-      <button className="swiper-prev hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm h-11 w-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+      <button className="swiper-prev flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
         <ChevronLeft className="w-5 h-5" />
       </button>
 
       {/* Custom Next Button */}
-      <button className="swiper-next hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm h-11 w-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+      <button className="swiper-next flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
         <ChevronRight className="w-5 h-5" />
       </button>
     </div>
