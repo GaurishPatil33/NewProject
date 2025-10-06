@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
@@ -81,12 +82,13 @@ export const ImageBanner = () => {
       onMouseLeave={() => setPaused(false)}
     >
       <AnimatePresence mode="wait">
+      <Link href={`/listingpage`} >
         <motion.img
           key={current}
           src={
             isMobile
-              ? bannerImages[current].imgMob
-              : bannerImages[current].imgDesk
+            ? bannerImages[current].imgMob
+            : bannerImages[current].imgDesk
           }
           alt={`Banner ${current + 1}`}
           initial={{ opacity: 0 }}
@@ -94,7 +96,8 @@ export const ImageBanner = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
           className="absolute inset-0 w-full h-full object-cover"
-        />
+          />
+          </Link>
       </AnimatePresence>
 
       {/* Left Arrow */}
@@ -157,13 +160,13 @@ export const ImageBanner2 = () => {
       >
         {bannerImages2.map((slide, i) => (
           <SwiperSlide key={i}>
-            <div className="relative w-full aspect-[12/15]">
+            <Link href={`/listingPage`} className="relative w-full aspect-[12/15]">
               <img
                 src={slide.img}
                 alt={slide.id.toString()}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
