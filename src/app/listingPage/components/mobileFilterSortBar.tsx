@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Filter, ArrowUpDown } from "lucide-react";
 
 const MobileFilterSortBar = ({
@@ -33,36 +33,43 @@ const MobileFilterSortBar = ({
   }, [lastScrollY]);
 
   return (
-    <motion.div
-      initial={{ y: -60 }}
-      animate={{ y: showBar ? 0 : -60 }}
-      transition={{ duration: 0.3 }}
-      className="flex md:hidden top-14 bg-gray-50 justify-between items-center gap-3 px-3 py-2 w-full border-b shadow-sm sticky  z-10"
-    >
-      {/* Filter Button */}
-      <button
-        onClick={() => {
-          setMobileFilters((prev) => !prev);
-          setMobileSort(false);
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ y: -60 }}
+        animate={{ y: showBar ? 0 : -60 }}
+        transition={{
+          type: "spring",
+          stiffness: 400,
+          damping: 40,
+          staggerChildren: 0.1,
         }}
-        className="flex items-center justify-center flex-1 gap-2 py-2 rounded-full border border-gray-300 text-gray-700 font-medium bg-white shadow-sm active:scale-95 transition"
+        className="flex md:hidden top-18 bg-gray-50 justify-between items-center gap-3 px-3 py-2 w-full border-b shadow-sm sticky  z-10"
       >
-        <Filter className="w-4 h-4 text-gray-500" />
-        <span className="text-sm">Filters</span>
-      </button>
+        {/* Filter Button */}
+        <button
+          onClick={() => {
+            setMobileFilters((prev) => !prev);
+            setMobileSort(false);
+          }}
+          className="flex items-center justify-center flex-1 gap-2 py-2 rounded-full border border-gray-300 text-gray-700 font-medium bg-white shadow-sm active:scale-95 transition"
+        >
+          <Filter className="w-4 h-4 text-gray-500" />
+          <span className="text-sm">Filters</span>
+        </button>
 
-      {/* Sort Button */}
-      <button
-        onClick={() => {
-          setMobileSort((prev) => !prev);
-          setMobileFilters(false);
-        }}
-        className="flex items-center justify-center flex-1 gap-2 py-2 rounded-full border border-gray-300 text-gray-700 font-medium bg-white shadow-sm active:scale-95 transition"
-      >
-        <ArrowUpDown className="w-4 h-4 text-gray-500" />
-        <span className="text-sm">Sort</span>
-      </button>
-    </motion.div>
+        {/* Sort Button */}
+        <button
+          onClick={() => {
+            setMobileSort((prev) => !prev);
+            setMobileFilters(false);
+          }}
+          className="flex items-center justify-center flex-1 gap-2 py-2 rounded-full border border-gray-300 text-gray-700 font-medium bg-white shadow-sm active:scale-95 transition"
+        >
+          <ArrowUpDown className="w-4 h-4 text-gray-500" />
+          <span className="text-sm">Sort</span>
+        </button>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

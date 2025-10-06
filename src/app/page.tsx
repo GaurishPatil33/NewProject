@@ -1,5 +1,5 @@
 "use client";
-import CategoryList from "@/components/CategoryList";
+import CategoryList, {  CategoryListType2 } from "@/components/CategoryList";
 import CategoryStories from "@/components/CategoryStories";
 import FeatureStrip from "@/components/FeaturesStrip";
 import { ImageBanner2 } from "@/components/ImageBanner";
@@ -20,7 +20,7 @@ const containerVariants = {
 
 // Child card animation
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
@@ -52,7 +52,7 @@ export default function Home() {
       <FeatureStrip />
 
       {/* Shop by Category */}
-      <CategoryList
+      <CategoryListType2
         data={Categories}
         title="Shop by Category"
         displayType={isMobile ? "grid" : "slider"}
@@ -60,10 +60,10 @@ export default function Home() {
 
       <ProductList products={sarees} title="Best Seller - Sarees" />
       {/* Shop by Occasion */}
-      <CategoryList
+      <CategoryListType2
         data={occasions}
         title="Shop by Occasion"
-        displayType="slider"
+        displayType="grid"
       />
 
       {/* products */}

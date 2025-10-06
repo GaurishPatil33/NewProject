@@ -36,6 +36,27 @@ const Navbar = () => {
   const pathname = usePathname();
   const isCheckout = pathname === "/checkout";
 
+  const [showBar, setShowBar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // scrolling down → hide
+        setShowBar(false);
+      } else {
+        // scrolling up → show
+        setShowBar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
   // const theme=useTheme()
 
   // useEffect(() => {
@@ -136,9 +157,9 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="flex items-center justify-between gap-1 w-full md:w-fit md:gap-4">
+          <div className="flex items-center justify-between gap-1 w-fit md:gap-4">
             {/* Search */}
-            <div className=" md:block w-full   right-0">
+            <div className="hidden md:block w-full   right-0">
               <Search />
             </div>
             {/* <div className=" md:hidden text-primary ">
@@ -212,6 +233,12 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        {/* mobileSearch */}
+        <AnimatePresence>
+          <div className="w-full flex md:hidden px-3 py-0.5 pb-2">
+            <SearchBar />
+          </div>
+        </AnimatePresence>
       </motion.header>
 
       {/* MOBILE SEARCH OVERLAY */}

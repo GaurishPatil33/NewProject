@@ -129,7 +129,7 @@ const CategoryStories = () => {
     );
 
   return (
-    <div className="w-full pt-2 md:py-4 bg-gradient-to-b from-[#900002]/5 to-[#900001]/20 -mb-5">
+    <div className="w-full pt-10 md:pt-3 md:py-4  -mb-5">
       {/* heading */}
       <div className="w-full px-4">
         <h2 className="text-md md:text-lg font-semibold bg-gradient-to-r from-red-800 to-red-400 bg-clip-text text-transparent">

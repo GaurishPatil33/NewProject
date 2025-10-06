@@ -28,17 +28,17 @@ export const occasions = [
     {
         title: "Formal Wear",
         slug: "sarees",
-        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw86f4f2d7/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM3.jpg"
+        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw9904c422/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM7.jpg"
     },
     {
         title: "Casual Wear",
         slug: "kurtas",
-        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw7a979460/HomePage/ShopByCategory/Blouses_003_M.png",
+        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw7007b33c/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM6.jpg"
     },
     {
         title: "Festive Wear",
         slug: "short-tops",
-        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dwbb0c965a/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM8.jpg",
+        image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dwbb0c965a/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM8.jpg"
     },
     {
         title: "Reception Ready",

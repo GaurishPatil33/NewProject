@@ -762,9 +762,7 @@ const ListingPageContent = () => {
                     setFilters(updatedFilters);
                     updateUrlParams(updatedFilters, {});
                   }}
-                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 ${
-                    item.color
-                  } ${isActive ? "scale-105 " : "hover:scale-105"}`}
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 ${isActive ? "scale-105 " : "hover:scale-105"}`}
                 >
                   <item.icon className="size-4" />
                   <div className=" text-xs font-semibold truncate">
