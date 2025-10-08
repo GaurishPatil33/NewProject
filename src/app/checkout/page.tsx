@@ -13,6 +13,7 @@ import AuthForm from "../auth/AuthForm";
 import AddressModal from "./components/AddressModal";
 import Payments, { PaymentMethod } from "./components/Payments";
 import CheckoutProductList from "./components/CheckoutProductList";
+import { useIsMobile } from "@/lib/hooks/useIsMobile";
 
 const CheckoutPage = () => {
   const router = useRouter();
