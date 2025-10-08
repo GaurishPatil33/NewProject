@@ -329,8 +329,8 @@ const ProductPage = () => {
                   </div>
                 </div>
               </div> */}
-             
-             {product.colors}
+
+              {product.colors}
               <hr className="" />
 
               {/* shipping */}
@@ -504,6 +504,12 @@ const ProductPage = () => {
                   className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/60 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
                 >
                   Buy Now
+                </button>{" "}
+                <button
+                  onClick={handleWhatsApp}
+                  className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
+                >
+                  <BsWhatsapp className="size-10" />
                 </button>
               </div>
             </div>
