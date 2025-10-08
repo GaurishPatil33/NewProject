@@ -24,6 +24,7 @@ import { Categories } from "@/lib/data";
 import CartSidebar from "./CartSidebar";
 import WishlistSidebar from "./WishlistSidebar";
 import SearchBar from "./Search";
+import { client1, client2 } from "@/lib/clientdata";
 
 const Navbar = () => {
   const router = useRouter();
@@ -38,6 +39,9 @@ const Navbar = () => {
 
   const [showBar, setShowBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const clientlogo = client1.data.logo;
+  const clientname = client1.data.name;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,7 +121,7 @@ const Navbar = () => {
             <Link
               href="/"
               aria-label="Go to homepage"
-              className="flex items-center justify-between w-fit gap-1.5 md:gap-3"
+              className=" hidden md:flex items-center justify-between w-fit gap-1.5 md:gap-3"
             >
               <motion.div
                 className="cursor-pointer size-13 md:size-12  flex items-center py-0.5 gap-1 md:gap-2"
@@ -125,19 +129,42 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <img
-                  src="logos/chabi.png"
+                  src={clientlogo}
                   alt="Logo"
-                  // width={48}
-                  // height={48}
-                  className=" size-full rounded-full object-contain "
+                  width={48}
+                  height={48}
+                  className=" size-full rounded-full object-cover "
                   // priority
                 />
               </motion.div>
               <span className=" hidden lg:block  text-md md:text-2xl text-primary font-semibold">
-                CHHABI
+                {clientname}
               </span>
             </Link>
           </div>
+          <Link
+            href="/"
+            aria-label="Go to homepage"
+            className="flex md:hidden items-center justify-between w-fit gap-1.5 md:gap-3"
+          >
+            <motion.div
+              className="cursor-pointer size-13 md:size-12  flex items-center py-0.5 gap-1 md:gap-2"
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <img
+                src={clientlogo}
+                alt="Logo"
+                width={48}
+                height={48}
+                className=" size-full rounded-full object-cover "
+                // priority
+              />
+            </motion.div>
+            <span className=" hidden lg:block  text-md md:text-2xl text-primary font-semibold">
+              CHHABI
+            </span>
+          </Link>
 
           {/* Desktop Categories */}
           <nav className="hidden md:flex items-center gap-4">
@@ -157,9 +184,9 @@ const Navbar = () => {
             ))}
           </nav>
 
-          <div className="flex items-center justify-between gap-1 w-fit md:gap-4">
+          <div className="flex items-center justify-between gap-1 w-fit  lg:w-[36%] md:gap-4 ">
             {/* Search */}
-            <div className="hidden md:block w-full   right-0">
+            <div className="hidden md:block w-full  right-0">
               <Search />
             </div>
             {/* <div className=" md:hidden text-primary ">
@@ -202,7 +229,7 @@ const Navbar = () => {
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="absolute -top-1 -right-1 bg-red-700 text-white text-[9px] md:text-[10px] rounded-full size-4 flex items-center justify-center"
+                    className="absolute -top-1 -right-1 bg-red-700 text-white text-[9px]  rounded-full size-4 flex items-center justify-center"
                   >
                     {wishlist.length}
                   </motion.span>
@@ -224,7 +251,7 @@ const Navbar = () => {
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="absolute -top-1 -right-1 bg-red-700 text-white text-[9px] md:text-[10px] rounded-full size-4 flex items-center justify-center"
+                    className="absolute -top-1 -right-1 bg-red-700 text-white text-[9px]  rounded-full size-4 flex items-center justify-center"
                   >
                     {cart.length}
                   </motion.span>
@@ -327,14 +354,16 @@ const Navbar = () => {
                 <Link href="/" aria-label="Go to homepage">
                   <div className="flex items-center gap-2">
                     <Image
-                      src="/logos/chabi.png"
+                      src={`/${clientlogo}`}
                       alt="Logo"
                       width={28}
                       height={28}
                       loading="lazy"
                       className=" rounded-full object-cover"
                     />
-                    <h1 className="text-xl font-bold text-red-700">CHHABI</h1>
+                    <h1 className="text-xl font-bold text-red-700">
+                      {clientname}
+                    </h1>
                   </div>
                 </Link>
                 <motion.button

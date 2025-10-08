@@ -25,7 +25,6 @@ import {
   fetchProductByCategory,
   searchProduct,
 } from "@/lib/productfetching";
-import ProductCard from "@/components/ProductCard";
 import FilterBanner from "./components/FilterBanner";
 import MobileFilterSortBar from "./components/mobileFilterSortBar";
 import { TbCircleDashedPercentage } from "react-icons/tb";
@@ -34,6 +33,7 @@ import { LuBadgeIndianRupee } from "react-icons/lu";
 import { FaFire } from "react-icons/fa";
 import { MdFiberNew } from "react-icons/md";
 import { color } from "framer-motion";
+import { ProductCard } from "@/components/ProductCard";
 
 interface FilterProps {
   id: string;
@@ -395,7 +395,10 @@ const ListingPageContent = () => {
     updateUrlParams(updated, {});
   };
 
-  const filterContent = (filter?: FilterProps,filterOptions?:FilterProps[]) => {
+  const filterContent = (
+    filter?: FilterProps,
+    filterOptions?: FilterProps[]
+  ) => {
     const currentFilter = filterOptions?.find((f) => f.id === activeFilter);
     if (!currentFilter) return null;
     // console.log(currentFilter);
@@ -635,7 +638,7 @@ const ListingPageContent = () => {
 
   // paginated products
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 10;
+  const productsPerPage = 15;
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * productsPerPage,
@@ -762,7 +765,9 @@ const ListingPageContent = () => {
                     setFilters(updatedFilters);
                     updateUrlParams(updatedFilters, {});
                   }}
-                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 ${isActive ? "scale-105 " : "hover:scale-105"}`}
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 ${
+                    isActive ? "scale-105 " : "hover:scale-105"
+                  }`}
                 >
                   <item.icon className="size-4" />
                   <div className=" text-xs font-semibold truncate">
@@ -799,9 +804,9 @@ const ListingPageContent = () => {
                       <ProductCard key={`p-${index}`} product={product} />,
                     ];
                     const bannerInsertions = [
-                      { index: 3, type: "category", key: "banner-category" },
-                      { index: 7, type: "price", key: "banner-price" },
-                      { index: 5, type: "brand", key: "banner-brand" },
+                      { index: 9, type: "brand", key: "banner-brand" },
+                      { index: 7, type: "category", key: "banner-category" },
+                      { index: 3, type: "price", key: "banner-price" },
                     ];
 
                     const bannerToInsert = bannerInsertions.find(
@@ -879,7 +884,9 @@ const ListingPageContent = () => {
                   ))}
                 </div>
                 {paginatedProducts.length <= 0 && !loading && (
-                  <div className=" p-3">Products not found! Try to adjust your filters </div>
+                  <div className=" p-3">
+                    Products not found! Try to adjust your filters{" "}
+                  </div>
                 )}
               </>
             ) : (

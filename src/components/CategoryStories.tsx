@@ -132,7 +132,7 @@ const CategoryStories = () => {
     <div className="w-full pt-10 md:pt-3 md:py-4  -mb-5">
       {/* heading */}
       <div className="w-full px-4">
-        <h2 className="text-md md:text-lg font-semibold bg-gradient-to-r from-red-800 to-red-400 bg-clip-text text-transparent">
+        <h2 className="text-md md:text-xl font-semibold bg-gradient-to-r from-red-800 to-red-400 bg-clip-text text-transparent">
           Discover our trending products{" "}
         </h2>
       </div>
@@ -151,7 +151,7 @@ const CategoryStories = () => {
               whileTap={{ scale: 0.95 }}
               className="flex-shrink-0 cursor-pointer"
             >
-              <div className="relative size-16 rounded-full overflow-hidden shadow-lg">
+              <div className="relative size-16 md:size-20 rounded-full overflow-hidden shadow-lg">
                 <img
                   src={cat.image}
                   alt={cat.title}
@@ -159,7 +159,7 @@ const CategoryStories = () => {
                 />
                 <div className="absolute inset-0 bg-black/20 w-full h-full" />
               </div>
-              <div className="text-[11px] font-medium text-[#900001] text-center max-w-20 truncate">
+              <div className="text-[11px] md:text-sm font-medium text-[#900001] text-center max-w-20 truncate">
                 {cat.title}
               </div>
             </motion.div>

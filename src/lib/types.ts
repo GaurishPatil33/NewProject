@@ -3,14 +3,16 @@ export type ProductSpecs = Record<string, string>;
 export interface Product {
   id: number;
   title: string;
-  category: string;
   brand: string;
-  video: string;
+  category: string;
+  subcategory?: string;
+  product_type?: string;
+  video: string | null;
   images: string[];
   price: number;
   discount: number;
   description: string;
-  product_specs: ProductSpecs; // dynamic object
+  product_specs: Record<string, string | string[] | undefined>;
   rating: number;
   reviews: Review[];
   sku: string;
@@ -18,10 +20,15 @@ export interface Product {
   stock: number;
   shippingInformation: string;
   returnPolicy: string;
+  minimumOrderQuantity?: { qty: number, price: number }[];
+  sizes?: { size: string, price: number }[];
+  colors?: string[];
   updatedAt: string
   sales: number
-  isTrending: boolean
+  isTrending?: boolean | undefined
+  link?: string
 }
+
 
 
 export interface Review {

@@ -1,30 +1,33 @@
 import { create } from "zustand";
 
-interface VideoState {
-    visibleIds: (string | number)[];
-    activeId: string | number | null;
-    setVisibleIds: (ids: (string | number)[]) => void;
-    setActiveId: (id: string | number | null) => void;
-    activeIndex: number;
-    setActiveIndex: (index: number | ((prev: number) => number)) => void;
+interface VideoStore {
+  activeId: string | number | null;
+  visibleIds: (string | number)[];
+  setActiveId: (
+    id:
+      | string
+      | number
+      | null
+      | ((prevId: string | number | null) => string | number | null)
+  ) => void;
+  setVisibleIds: (
+    ids:
+      | (string | number)[]
+      | ((prev: (string | number)[]) => (string | number)[])
+  ) => void;
 }
 
-export const useVideoStore = create<VideoState>((set, get) => ({
-    visibleIds: [],
-    activeId: null,
-    setVisibleIds: (ids) => {
-        set({ visibleIds: ids })
-        const first = ids[0] ?? null
-        if (get().activeId !== first) {
-            set({ activeId: first })
-        }
-    },
-    setActiveId: (id) => set({ activeId: id }),
-
-
-    activeIndex: 0,
-    setActiveIndex: (index) =>
-        set((state) => ({
-            activeIndex: typeof index === "function" ? index(state.activeIndex) : index,
-        })),
+export const useVideoStore = create<VideoStore>((set) => ({
+  activeId: null,
+  visibleIds: [],
+  setActiveId: (idOrFn) =>
+    set((state) => ({
+      activeId:
+        typeof idOrFn === "function" ? idOrFn(state.activeId) : idOrFn,
+    })),
+  setVisibleIds: (updater) =>
+    set((state) => ({
+      visibleIds:
+        typeof updater === "function" ? updater(state.visibleIds) : updater,
+    })),
 }));

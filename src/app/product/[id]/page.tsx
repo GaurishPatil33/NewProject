@@ -1,5 +1,5 @@
 "use client";
-import ProductList from "@/components/ProductList";
+import { ProductList } from "@/components/ProductList";
 import ProductMediaCorousal from "@/components/ProductMediaCorousal";
 import Reviews from "@/components/Reviews";
 import {
@@ -14,16 +14,19 @@ import {
   BellIcon,
   Check,
   Heart,
+  IndianRupee,
   Minus,
   Plus,
   RotateCcw,
   Share2,
+  Shield,
   ShoppingCart,
   Star,
   Truck,
 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { BsWhatsapp } from "react-icons/bs";
 
 const ProductPage = () => {
   const params = useParams();
@@ -95,15 +98,18 @@ const ProductPage = () => {
     router.push(`/checkout`);
   };
 
-  // const handleCartToggle = () => {
-  //   if (isInCart(product.id)) {
-  //     showToast("Removed from Cart 🛒");
-  //     removeFromCart(product.id);
-  //   } else {
-  //     showToast("Added to Cart 🛒");
-  //     addToCart(product);
-  //   }
-  // };
+  const handleWhatsApp = () => {
+    const phoneNumber = "919999999999";
+    const message = encodeURIComponent(
+      `Hello! I'm interested in:\n\n` +
+        `🛒 Product: ${product?.title}\n` +
+        // `🎨 Color: ${product.colors}\n` +
+        `💰 Price: ₹${product?.price}\n\n` +
+        `Can you give me more details?`
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   if (loading) return <div className=" text-center mt10">Loading...</div>;
 
@@ -112,7 +118,7 @@ const ProductPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-1">
+      <div className="min-h-screen pt-12 bg-gradient-to-br from-slate-50 to-slate-100 md:pt-1">
         {/* product info */}
         <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8 py-2 md:py-8 bg-white">
           <div className=" w-full flex  md:gap-3 flex-col md:flex-row justify-between">
@@ -219,17 +225,17 @@ const ProductPage = () => {
                   <div className="flex items-center border-2 border-gray-200 rounded-xl bg-white shadow-sm">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-3 hover:bg-gray-50 transition-colors rounded-l-xl"
+                      className="p-1.5 hover:bg-gray-50 transition-colors rounded-l-xl"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
-                    <span className="md:px-6 p-2 px-3 font-semibold text-sm">
+                    <span className="md:px-3 py-1.5 font-semibold text-sm">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
                       disabled={quantity > 9}
-                      className="p-3 hover:bg-gray-50 transition-colors rounded-r-xl"
+                      className="p-1.5 hover:bg-gray-50 transition-colors rounded-r-xl"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -251,8 +257,10 @@ const ProductPage = () => {
                 )}
               </div>
 
+              {product.colors}
+
               {/*cart button */}
-              <div className="flex space-x-4">
+              <div className="hidden md:flex space-x-4 ">
                 <button
                   onClick={handleAddToCart}
                   disabled={product.stock === 0}
@@ -277,10 +285,16 @@ const ProductPage = () => {
                 >
                   Buy Now
                 </button>
+                <button
+                  onClick={handleWhatsApp}
+                  className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
+                >
+                  <BsWhatsapp className="size-10" />
+                </button>
               </div>
 
               {/* shipping,return and Warranty */}
-              <div className="grid grid-cols-2  p-2 md:p-6   border-y border-gray-400">
+              {/* <div className="grid grid-cols-2  p-2 md:p-6   border-y border-gray-400">
                 <div className="flex items-center justify-center space-x-3">
                   <Truck className="w-5 h-5 text-green-500" />
                   <div className="">
@@ -307,12 +321,72 @@ const ProductPage = () => {
                     </p>
                   </div>
                 </div>
-                {/* <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                   <Shield size={20} className="text-purple-600" />
                   <div>
                     <p className="text-sm font-medium">Warranty</p>
-                    <p className="text-xs text-gray-500">
-                      {product.warrantyInformation}
+                    <p className="text-xs text-gray-500"></p>
+                  </div>
+                </div>
+              </div> */}
+             
+             {product.colors}
+              <hr className="" />
+
+              {/* shipping */}
+              <div className=" rounded-md pt-3 space-y-4">
+                <h3 className="text-sm font-semibold text-gray-800">
+                  CHECK DELIVERY & SERVICES
+                </h3>
+
+                {/* Pincode Input */}
+                <div className="flex items-center justify-between border rounded-md px-3 py-2">
+                  <input
+                    type="text"
+                    value="560000"
+                    // readOnly
+                    className="bg-transparent outline-none text-sm font-medium w-full"
+                  />
+                  <button className="text-red-600 font-semibold text-sm">
+                    CHANGE
+                  </button>
+                </div>
+
+                {/* Delivery Items */}
+                <div className="space-y-3 text-sm text-gray-700">
+                  <div className="flex items-center gap-3">
+                    <Truck className="w-5 h-5 text-gray-600" />
+                    <span>
+                      Get it by{" "}
+                      <span className="font-semibold">Sat, Oct 11</span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <IndianRupee className="w-5 h-5 text-gray-600" />
+                    <span>Pay on delivery available</span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <RotateCcw className="w-5 h-5 text-gray-600" />
+                    <span>
+                      Easy 7 days return & exchange available{" "}
+                      <button className="text-red-700 font-semibold">
+                        VIEW
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+                {/* <div className="flex gap-3 text-sm text-gray-700">
+                  <RotateCcw className="w-5 h-5 text-gray-600 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold">
+                      Easy 14 days returns and exchange
+                    </p>
+                    <p className="text-gray-500 text-xs">
+                      Choose to return or exchange for a different size (if
+                      available) within 14 days.
                     </p>
                   </div>
                 </div> */}

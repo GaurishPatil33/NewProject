@@ -1,11 +1,15 @@
-"use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  Grid as SwiperGrid,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -306,7 +310,7 @@ export const CategoryListType2 = ({
   // ====== SLIDER STATE ======
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const swiperRef = useRef<SwiperClass|null>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
 
   const handleInit = (swiper: SwiperClass) => {
     swiperRef.current = swiper;
@@ -318,29 +322,28 @@ export const CategoryListType2 = ({
     setIsBeginning(swiper.isBeginning);
     setIsEnd(swiper.isEnd);
   };
+  const slidePrev = () => swiperRef.current?.slidePrev();
+  const slideNext = () => swiperRef.current?.slideNext();
 
   // ====== GRID STATE ======
-  const [page, setPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [slidesPerView, setSlidesPerView] = useState(4); // tracks items per page
 
-  // calculate responsive items per page
+  // Detect breakpoint manually for grouping
   useEffect(() => {
-    const updateItemsPerPage = () => {
-      if (window.innerWidth >= 1024) setItemsPerPage(16);
-      else if (window.innerWidth >= 768) setItemsPerPage(9);
-      else setItemsPerPage(4);
+    const updateSlidesPerView = () => {
+      if (window.innerWidth < 640) setSlidesPerView(4); // 2x2
+      else if (window.innerWidth < 1024) setSlidesPerView(6); // 3x2
+      else setSlidesPerView(8); // 4x2
     };
-    updateItemsPerPage();
-    window.addEventListener("resize", updateItemsPerPage);
-    return () => window.removeEventListener("resize", updateItemsPerPage);
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => window.removeEventListener("resize", updateSlidesPerView);
   }, []);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const startIndex = page * itemsPerPage;
-  const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
-
-  const nextPage = () => setPage((p) => Math.min(p + 1, totalPages - 1));
-  const prevPage = () => setPage((p) => Math.max(p - 1, 0));
+  const chunkedData = [];
+  for (let i = 0; i < data.length; i += slidesPerView) {
+    chunkedData.push(data.slice(i, i + slidesPerView));
+  }
 
   return (
     <section className="py-4 md:py-6 px-3 md:px-6">
@@ -386,7 +389,7 @@ export const CategoryListType2 = ({
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-black/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60"></div>
                     <p className="absolute bottom-2 left-2 text-white text-lg font-semibold drop-shadow-md">
                       {cat.title}
                     </p>
@@ -399,7 +402,7 @@ export const CategoryListType2 = ({
           {/* Custom Navigation Buttons */}
           {!isBeginning && (
             <button
-              onClick={() => swiperRef.current?.slidePrev()}
+              onClick={slidePrev}
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white shadow-md rounded-full p-2 z-10 transition"
             >
               <ChevronLeft className="w-5 h-5 text-black" />
@@ -407,7 +410,7 @@ export const CategoryListType2 = ({
           )}
           {!isEnd && (
             <button
-              onClick={() => swiperRef.current?.slideNext()}
+              onClick={slideNext}
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white shadow-md rounded-full p-2 z-10 transition"
             >
               <ChevronRight className="w-5 h-5 text-black" />
@@ -422,61 +425,56 @@ export const CategoryListType2 = ({
       {/* ===== GRID VIEW ===== */}
       {displayType === "grid" && (
         <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={page}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            >
-              {currentItems.map((cat) => (
-                <Link key={cat.slug} href={`${basePath}?cat=${cat.slug}`}>
-                  <div className="relative rounded-tl-2xl rounded-br-2xl overflow-hidden group aspect-[4/5]">
-                    <img
-                      src={cat.image}
-                      alt={cat.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-black/30"></div>
-                    <p className="absolute bottom-2 left-2 text-white text-lg font-semibold drop-shadow-md">
-                      {cat.title}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <Swiper
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            onInit={handleInit}
+            onSlideChange={handleSlideChange}
+            className="overflow-hidden "
+          >
+            {chunkedData.map((group, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className={`
+                  grid gap-4 
+                  grid-cols-2 
+                  sm:grid-cols-3 
+                  lg:grid-cols-4
+                `}
+                >
+                  {group.map((cat) => (
+                    <Link key={cat.slug} href={`${basePath}?cat=${cat.slug}`}>
+                      <div className="relative rounded-tl-2xl rounded-br-2xl overflow-hidden group aspect-[4/5] ">
+                        <img
+                          src={cat.image}
+                          alt={cat.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30" />
+                        <p className="absolute bottom-2 left-2 text-white text-lg font-semibold drop-shadow-md">
+                          {cat.title}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-          {/* Pagination Dots */}
-          {totalPages > 1 && (
-            <div className="flex justify-center mt-3 gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setPage(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    i === page ? "bg-gray-800 scale-125" : "bg-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Nav Arrows */}
-          {page > 0 && (
+          {/* Custom Navigation Buttons */}
+          {!isBeginning && (
             <button
-              onClick={prevPage}
+              onClick={slidePrev}
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white shadow-md rounded-full p-2 z-10 transition"
             >
               <ChevronLeft className="w-5 h-5 text-black" />
             </button>
           )}
-          {page < totalPages - 1 && (
+          {!isEnd && (
             <button
-              onClick={nextPage}
+              onClick={slideNext}
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white shadow-md rounded-full p-2 z-10 transition"
             >
               <ChevronRight className="w-5 h-5 text-black" />
