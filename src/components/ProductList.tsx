@@ -189,90 +189,90 @@ export const ProductsGrid = ({
 
   return (
     <div className="relative">
-      <motion.section
+      {/* <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="bg-white py-3 md:py-6 mx-auto px-2 ">
-          {/* Section Title */}
-          <motion.h2
-            variants={fadeInUp}
-            className="text-xl md:text-2xl font-bold text-center  md:mb-4 bg-gradient-to-r from-red-800 to-red-400 bg-clip-text text-transparent"
-          >
-            {title}
-          </motion.h2>
-          {/* mobile capsule filters */}
-          <div className="md:hidden flex  items-center pl-2 mt-1 py-1 justify overflow-x-auto gap-2 snap-x snap-mandatory scroll-smooth scrollbar-hide -mb-2">
-            {[
-              {
-                title: "Crazy Deal",
-                key: "crazyDeal",
-                icon: TbCircleDashedPercentage,
-                color: "text-purple-400 border-purple-300 bg-purple-100",
-              },
-              {
-                title: "New Arrivals",
-                key: "newArriwals",
-                icon: MdFiberNew,
-                color: "text-blue-400 border-blue-300 bg-blue-100",
-              },
-              {
-                title: "Best Sellers",
-                key: "bestSellers",
-                icon: FaFire,
-                color: "text-orange-400 border-orange-300 bg-orange-100",
-              },
-              {
-                title: "Under 5000",
-                key: "under5000",
-                icon: LuBadgeIndianRupee,
-                color: "text-green-400 border-green-300 bg-green-100",
-              },
-              {
-                title: "Trending",
-                key: "trending",
-                icon: FaArrowTrendUp,
-                color: "text-red-400 border-red-300 bg-red-100",
-              },
-            ]
-              .reverse()
-              .map((item, i) => {
-                return (
-                  <div
-                    key={i}
-                    onClick={() => {
-                      router.push(`/listingpage/`);
-                    }}
-                    className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 hover:scale-105"
+      > */}
+      <div className="bg-white py-3 md:py-6 mx-auto px-2 ">
+        {/* Section Title */}
+        <motion.h2
+          variants={fadeInUp}
+          className="text-xl md:text-2xl font-bold text-center  md:mb-4 bg-gradient-to-r from-red-800 to-red-400 bg-clip-text text-transparent"
+        >
+          {title}
+        </motion.h2>
+        {/* mobile capsule filters */}
+        <div className="md:hidden flex  items-center pl-2 mt-1 py-2 justify overflow-x-auto gap-2 snap-x snap-mandatory scroll-smooth scrollbar-hide -mb-2">
+          {[
+            {
+              title: "Crazy Deal",
+              key: "crazyDeal",
+              icon: TbCircleDashedPercentage,
+              color: "text-purple-400 border-purple-300 bg-purple-100",
+            },
+            {
+              title: "New Arrivals",
+              key: "newArriwals",
+              icon: MdFiberNew,
+              color: "text-blue-400 border-blue-300 bg-blue-100",
+            },
+            {
+              title: "Best Sellers",
+              key: "bestSellers",
+              icon: FaFire,
+              color: "text-orange-400 border-orange-300 bg-orange-100",
+            },
+            {
+              title: "Under 5000",
+              key: "under5000",
+              icon: LuBadgeIndianRupee,
+              color: "text-green-400 border-green-300 bg-green-100",
+            },
+            {
+              title: "Trending",
+              key: "trending",
+              icon: FaArrowTrendUp,
+              color: "text-red-400 border-red-300 bg-red-100",
+            },
+          ]
+            .reverse()
+            .map((item, i) => {
+              return (
+                <div
+                  key={i}
+                  onClick={() => {
+                    router.push(`/listingpage/`);
+                  }}
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 hover:scale-105"
                   }`}
-                  >
-                    <item.icon className="size-4" />
-                    <div className=" text-xs font-semibold truncate">
-                      {item.title}
-                    </div>
+                >
+                  <item.icon className="size-4" />
+                  <div className=" text-xs font-semibold truncate">
+                    {item.title}
                   </div>
-                );
-              })}
-          </div>
-          <motion.div
-            variants={containerVariants}
-            ref={scrollRef}
-            className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
-          >
-            {products.map((p) => (
-              <motion.div
-                key={p.id}
-                variants={fadeInUp}
-                className="relative snap-start h-fit  flex-shrink-0"
-              >
-                <ProductCard product={p} />
-              </motion.div>
-            ))}
-          </motion.div>
+                </div>
+              );
+            })}
         </div>
-      </motion.section>
+        <motion.div
+          variants={containerVariants}
+          ref={scrollRef}
+          className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2"
+        >
+          {products.map((p) => (
+            <motion.div
+              key={p.id}
+              variants={fadeInUp}
+              className="relative snap-start h-fit  flex-shrink-0"
+            >
+              <ProductCard product={p} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+      {/* </motion.section> */}
     </div>
   );
 };
@@ -287,29 +287,45 @@ export const ProductListType2 = ({
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const swiperRef = useRef<SwiperClass | null>(null);
+  const slidesPerView = 2; // 👈 Change this dynamically if needed
 
-  const handleInit = (swiper: SwiperClass) => {
-    swiperRef.current = swiper;
-    setIsBeginning(swiper.isBeginning);
-    setIsEnd(swiper.isEnd);
-
-    // 🧠 Initialize first visible slide
-    const firstSlide = swiper.slides[swiper.activeIndex];
-    const id = firstSlide
-      ?.querySelector("[data-product-id]")
-      ?.getAttribute("data-product-id");
-    if (id) setActiveId(id);
-  };
-
+  // Set the first product on mount
   useEffect(() => {
-    // 🕒 Auto-cycle every 7 seconds
-    if (!activeId || !swiperRef.current) return;
-    const timer = setTimeout(() => {
-      swiperRef.current!.slideNext();
-    }, 7000);
-    return () => clearTimeout(timer);
-  }, [activeId]);
+    if (products.length > 0) {
+      setActiveId(products[0].id.toString());
+      setCurrentIndex(0);
+    }
+  }, [products]);
+
+  // 🔁 Handles moving to the next video or next slide set
+  const handleNextVideo = () => {
+    const nextIndex = currentIndex + 1;
+    const currentSlideStart = swiperRef.current?.activeIndex || 0;
+    const currentSlideEnd = currentSlideStart + slidesPerView - 1;
+
+    if (nextIndex <= currentSlideEnd && nextIndex < products.length) {
+      // ▶️ Move to next video in current view
+      setCurrentIndex(nextIndex);
+      setActiveId(products[nextIndex].id.toString());
+    } else {
+      // ⏩ Slide to next group or loop back
+      const nextStartIndex = currentSlideEnd + 1;
+
+      if (nextStartIndex < products.length) {
+        swiperRef.current?.slideTo(nextStartIndex);
+        setCurrentIndex(nextStartIndex);
+        setActiveId(products[nextStartIndex].id.toString());
+      } else {
+        // 🔁 Loop back to first
+        swiperRef.current?.slideTo(0);
+        setCurrentIndex(0);
+        setActiveId(products[0].id.toString());
+      }
+    }
+  };
 
   return (
     <section className="py-4 md:py-6 px-3 md:px-6">
@@ -325,38 +341,44 @@ export const ProductListType2 = ({
       <div className="relative">
         <Swiper
           modules={[Navigation, Pagination]}
-          slidesPerView={2}
+          slidesPerView={slidesPerView}
           spaceBetween={16}
           loop={false}
           pagination={{
             clickable: true,
             el: ".custom-pagination",
           }}
-          onInit={handleInit}
+          onInit={(swiper) => {
+            swiperRef.current = swiper;
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
           onSlideChange={(swiper) => {
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
-            const currentSlide = swiper.slides[swiper.activeIndex];
-            const id = currentSlide
-              ?.querySelector("[data-product-id]")
-              ?.getAttribute("data-product-id");
+
+            const startIndex = swiper.activeIndex;
+            setCurrentIndex(startIndex);
+            const id = products[startIndex]?.id?.toString();
             if (id) setActiveId(id);
           }}
           breakpoints={{
             640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
           }}
-          className="overflow-hidden"
+          className="overflow-hidden gap-2 space-x-2"
         >
           {products.map((p, i) => (
             <SwiperSlide key={p.id}>
-              <ProductCardType2
-                product={p}
-                index={i}
-                activeId={activeId}
-                setActiveId={setActiveId}
-              />
+              <div data-product-id={p.id}>
+                <ProductCard
+                  product={p}
+                  index={i}
+                  // activeId={activeId}
+                  // onVideoEnd={handleNextVideo} // 👈 callback
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

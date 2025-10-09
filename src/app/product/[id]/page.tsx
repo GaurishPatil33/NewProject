@@ -1,5 +1,5 @@
 "use client";
-import { ProductList } from "@/components/ProductList";
+import { ProductList, ProductListType2 } from "@/components/ProductList";
 import ProductMediaCorousal from "@/components/ProductMediaCorousal";
 import Reviews from "@/components/Reviews";
 import {
@@ -9,6 +9,7 @@ import {
 import { useCartStore } from "@/lib/store/cartStore";
 import { useToast } from "@/lib/store/toast";
 import { Product } from "@/lib/types";
+import { motion } from "framer-motion";
 import {
   Ban,
   BellIcon,
@@ -27,6 +28,18 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { BsWhatsapp } from "react-icons/bs";
+interface ProductConfig {
+  color?: string;
+  size?: string;
+  price?: number;
+  quantity: number;
+}
+interface ColorOptions {
+  id: string;
+  name: string;
+  gradient: string;
+  border: string;
+}
 
 const ProductPage = () => {
   const params = useParams();
@@ -34,12 +47,15 @@ const ProductPage = () => {
   const id = params.id?.toString();
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [pincode, setPincode] = useState("590000");
+
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const basePrice = product
     ? product?.price + (product?.price * product?.discount) / 100
     : 0;
   const [activeTab, setActiveTab] = useState("description");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -54,17 +70,99 @@ const ProductPage = () => {
     setLoading(false);
   }, [id]);
 
-  // const nextImage = () => {
-  //   if (product)
-  //     setSelectedImage((prev) => (prev + 1) % product?.images?.length);
-  // };
-
-  // const prevImage = () => {
-  //   if (product)
-  //     setSelectedImage(
-  //       (prev) => (prev - 1 + product.images.length) % product.images.length
-  //     );
-  // };
+  const [selectedProductConfig, setSelectedProductConfig] =
+    useState<ProductConfig>({
+      color: "red",
+      size: "",
+      price: product?.price ?? 0,
+      quantity: 1,
+    });
+  const colorOptions: ColorOptions[] = [
+    {
+      id: "Golden",
+      name: "Golden",
+      gradient:
+        "linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%)",
+      border: "#B8860B",
+    },
+    {
+      id: "Silver",
+      name: "Silver",
+      gradient:
+        "linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A8A8A8 100%)",
+      border: "#808080",
+    },
+    // {
+    //   id: "Bronze",
+    //   name: "Bronze",
+    //   gradient:
+    //     "linear-gradient(135deg, #CD7F32 0%, #B87333 50%, #8B4513 100%)",
+    //   border: "#8B4513",
+    // },
+    // {
+    //   id: "Copper",
+    //   name: "Copper",
+    //   gradient:
+    //     "linear-gradient(135deg, #B87333 0%, #C77826 50%, #8B4513 100%)",
+    //   border: "#7D4A1E",
+    // },
+    {
+      id: "Rose Gold",
+      name: "Rose Gold",
+      gradient:
+        "linear-gradient(135deg, #ECC5C0 0%, #E6A4B4 50%, #C9A0A0 100%)",
+      border: "#B76E79",
+    },
+    {
+      id: "Black",
+      name: "Black",
+      gradient:
+        "linear-gradient(135deg, #2C2C2C 0%, #000000 50%, #1A1A1A 100%)",
+      border: "#000000",
+    },
+    {
+      id: "White",
+      name: "White",
+      gradient:
+        "linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 50%, #E8E8E8 100%)",
+      border: "#D3D3D3",
+    },
+    {
+      id: "Red",
+      name: "Red",
+      gradient:
+        "linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 50%, #C92A2A 100%)",
+      border: "#A61E4D",
+    },
+    {
+      id: "Blue",
+      name: "Blue",
+      gradient:
+        "linear-gradient(135deg, #4DABF7 0%, #339AF0 50%, #1971C2 100%)",
+      border: "#1864AB",
+    },
+    {
+      id: "Green",
+      name: "Green",
+      gradient:
+        "linear-gradient(135deg, #51CF66 0%, #40C057 50%, #2F9E44 100%)",
+      border: "#2B8A3E",
+    },
+    {
+      id: "Brown",
+      name: "Brown",
+      gradient:
+        "linear-gradient(135deg, #A0522D 0%, #8B4513 50%, #654321 100%)",
+      border: "#5D3A1A",
+    },
+    {
+      id: "Gray",
+      name: "Gray",
+      gradient:
+        "linear-gradient(135deg, #ADB5BD 0%, #868E96 50%, #495057 100%)",
+      border: "#343A40",
+    },
+  ];
 
   const { addToCart, toggleWishlist, isInWishlist, buyNow, isInCart } =
     useCartStore();
@@ -99,12 +197,12 @@ const ProductPage = () => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "919999999999";
+    const phoneNumber = "918618248199";
     const message = encodeURIComponent(
       `Hello! I'm interested in:\n\n` +
-        `🛒 Product: ${product?.title}\n` +
-        // `🎨 Color: ${product.colors}\n` +
-        `💰 Price: ₹${product?.price}\n\n` +
+        ` Product: ${product?.title}\n` +
+        ` Id: ${product?.id}\n` +
+        ` Price: ₹${product?.price}\n\n` +
         `Can you give me more details?`
     );
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
@@ -124,7 +222,7 @@ const ProductPage = () => {
           <div className=" w-full flex  md:gap-3 flex-col md:flex-row justify-between">
             {/* Product Images */}
 
-            <div className=" flex items-center md:max-w-[50%] lg:w-[40%] xl:w-[30%] w-full   flex-col px-2 ">
+            <div className="md:sticky md:top-12 self-start flex items-center md:max-w-[50%] lg:w-[40%] xl:w-[30%] w-full flex-col px-2 ">
               <ProductMediaCorousal product={product} />
             </div>
 
@@ -257,7 +355,55 @@ const ProductPage = () => {
                 )}
               </div>
 
-              {product.colors}
+              <div className="w-full  ">
+                <h3 className=" text-lg font-semibold mb-2 text-gray-800">
+                  Color:{" "}
+                  <span className="font-normal ml-2">
+                    {selectedProductConfig.color}
+                  </span>
+                </h3>
+                <div className="flex flex-wrap  gap-3">
+                  {colorOptions
+                    // .sort(() => Math.random() - 0.5)
+                    .slice(0, 4)
+                    .map((color) => (
+                      <motion.button
+                        key={color.id}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() =>
+                          setSelectedProductConfig((prev) => ({
+                            ...prev,
+                            color: color.id,
+                          }))
+                        }
+                        className={`relative rounded-xl min-w-20 max-w-30 overflow-hidden transition-all ${
+                          selectedProductConfig.color === color.id
+                            ? "ring-4 ring-red-500/70 ring-offset-2 shadow-lg"
+                            : "ring-2 ring-gray-200 hover:ring-red-300"
+                        }`}
+                      >
+                        <div
+                          className="h-8 w-full"
+                          style={{
+                            background: color.gradient,
+                            borderBottom: `2px solid ${color.border}`,
+                          }}
+                        />
+                        <div className="py-2 px-2 bg-white">
+                          <p className="text-[9px] font-semibold text-gray-700 truncate">
+                            {color.name}
+                          </p>
+                        </div>
+                        {/* {selectedProductConfig.color === color.id && (
+                          <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-md">
+                            <Check className="size-3 text-gray-600" />
+                          </div>
+                        )} */}
+                      </motion.button>
+                    ))}
+                </div>
+              </div>
 
               {/*cart button */}
               <div className="hidden md:flex space-x-4 ">
@@ -293,6 +439,15 @@ const ProductPage = () => {
                 </button>
               </div>
 
+              <div
+                className="md:hidden w-full flex gap-2 items-center"
+                onClick={handleWhatsApp}
+              >
+                <div className="">You can konw more on whatsapp</div>
+                <button className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2">
+                  <BsWhatsapp className="size-5" />
+                </button>
+              </div>
               {/* shipping,return and Warranty */}
               {/* <div className="grid grid-cols-2  p-2 md:p-6   border-y border-gray-400">
                 <div className="flex items-center justify-center space-x-3">
@@ -330,7 +485,6 @@ const ProductPage = () => {
                 </div>
               </div> */}
 
-              {product.colors}
               <hr className="" />
 
               {/* shipping */}
@@ -342,9 +496,10 @@ const ProductPage = () => {
                 {/* Pincode Input */}
                 <div className="flex items-center justify-between border rounded-md px-3 py-2">
                   <input
+                    id="pincode"
                     type="text"
-                    value="560000"
-                    // readOnly
+                    value={pincode ?? "560000"}
+                    onChange={(e) => setPincode(e.target.value)}
                     className="bg-transparent outline-none text-sm font-medium w-full"
                   />
                   <button className="text-red-600 font-semibold text-sm">
@@ -393,6 +548,7 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
+          <hr className="my-2 md:hidden" />
           {/* info tabs */}
           <div className="bg-white py-2 mt-2 px-3 md:px-6 md:py-4 rounded-xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-semibold text-gray-800 ">
@@ -465,7 +621,7 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductList products={relatedProducts} />
+            <ProductListType2 products={relatedProducts} />
           </div>
 
           {/* sticky cart button for mobile View */}
@@ -504,12 +660,6 @@ const ProductPage = () => {
                   className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/60 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
                 >
                   Buy Now
-                </button>{" "}
-                <button
-                  onClick={handleWhatsApp}
-                  className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
-                >
-                  <BsWhatsapp className="size-10" />
                 </button>
               </div>
             </div>

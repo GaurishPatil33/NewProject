@@ -4,7 +4,10 @@ import CategoryStories from "@/components/CategoryStories";
 import FeatureStrip from "@/components/FeaturesStrip";
 import { ImageBanner2 } from "@/components/ImageBanner";
 import { ProductCardType2 } from "@/components/ProductCard";
-import { ProductListType2, ProductsGrid } from "@/components/ProductList";
+import {
+  ProductListType2,
+  ProductsGrid,
+} from "@/components/ProductList";
 import { Categories, occasions } from "@/lib/data";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { fetchAllProducts } from "@/lib/productfetching";
@@ -78,6 +81,7 @@ export default function Home() {
         products={kurtas}
         title="Best Seller - Kurtas/Salwars"
       />
+     
 
       <ProductsGrid
         products={randomProducts}

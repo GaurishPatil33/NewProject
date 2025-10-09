@@ -148,7 +148,7 @@ const Navbar = () => {
             className="flex md:hidden items-center justify-between w-fit gap-1.5 md:gap-3"
           >
             <motion.div
-              className="cursor-pointer size-13 md:size-12  flex items-center py-0.5 gap-1 md:gap-2"
+              className="cursor-pointer size-15 md:size-12  rounded-full overflow-hidden flex items-center py-0.5 gap-1 md:gap-2"
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
             >
@@ -157,7 +157,7 @@ const Navbar = () => {
                 alt="Logo"
                 width={48}
                 height={48}
-                className=" size-full rounded-full object-cover "
+                className=" size-full  object-contain   "
                 // priority
               />
             </motion.div>
@@ -262,7 +262,7 @@ const Navbar = () => {
         </div>
         {/* mobileSearch */}
         <AnimatePresence>
-          <div className="w-full flex md:hidden px-3 py-0.5 pb-2">
+          <div className="w-full h-9 flex md:hidden px-3 py-0.5 pb-2">
             <SearchBar />
           </div>
         </AnimatePresence>

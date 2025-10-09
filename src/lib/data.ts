@@ -13,7 +13,7 @@ export const Categories = [
   },
   {
     title: "Short Tops",
-    slug: "short-tops",
+    slug: "blouse",
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw1cd25b1b/HomePage/ShopByCategory/ShortTops_003_M.png",
   },
   {
@@ -37,7 +37,7 @@ export const occasions = [
   },
   {
     title: "Festive Wear",
-    slug: "short-tops",
+    slug: "blouse",
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dwbb0c965a/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM8.jpg"
   },
   {
