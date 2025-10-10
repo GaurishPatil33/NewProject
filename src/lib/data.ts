@@ -12,13 +12,13 @@ export const Categories = [
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dwfb416bed/HomePage/ShopByCategory/Kurtas_003_M.png",
   },
   {
-    title: "Short Tops",
+    title: "Blouse",
     slug: "blouse",
-    image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw1cd25b1b/HomePage/ShopByCategory/ShortTops_003_M.png",
+    image: "https://thenmozhidesigns.com/cdn/shop/files/PRAK4169copy.jpg?v=1740974226&width=800",
   },
   {
     title: "Lehengas",
-    slug: "lehengas",
+    slug: "blouse",
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw8d3e577f/HomePage/ShopByCategory/Lehengas_003_M.png",
   },
 
@@ -42,7 +42,7 @@ export const occasions = [
   },
   {
     title: "Reception Ready",
-    slug: "lehengas",
+    slug: "kurtas",
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw86f4f2d7/HomePage/ShopByOccasion/new/Shop%20By%20Occassion_HM3.jpg"
   },
   // {
@@ -908,13 +908,86 @@ export const products = [
     updatedAt: "2025-09-22T13:40:00.000Z",
     sales: 230,
     isTrending: true
+  }, {
+    "id": 2004,
+    "title": "Black Model Blouse",
+    "category": "blouse",
+    "brand": "Thenmozhi Designs",
+    "video": "https://thenmozhidesigns.com/cdn/shop/videos/c/vp/f90be60da1d6463fb9da6c34c3d3a059/f90be60da1d6463fb9da6c34c3d3a059.HD-1080p-2.5Mbps-43634179.mp4?v=0",
+    "images": [
+      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4169copy.jpg?v=1740974226&width=800",
+      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4171copy.jpg?v=1740974226&width=800",
+      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4176copy.jpg?v=1740974226&width=800"
+    ],
+    "price": 1499,
+    "discount": 15,
+    "description": "A sleek and elegant black model blouse from Thenmozhi Designs. Handloom-crafted for comfort and style, this blouse pairs perfectly with traditional sarees for festive occasions, casual gatherings, or ethnic events.",
+    "product_specs": {
+      "Category": "Blouse",
+      "Fabrics": "Cotton / Silk Blend",
+      "Origin": "Tamil Nadu",
+      "Occasion": "Festive / Casual Wear",
+      "Craft": "Handloom",
+      "Blouse Type": "Ready-to-wear",
+      "Blouse Color": "Black",
+      "Blouse Dimension": "Standard Size",
+      "Color": "Black",
+      "Wash Care": "Hand Wash / Mild Detergent"
+    },
+    "rating": 4.5,
+    "reviews": [
+      {
+        "username": "Anjali Menon",
+        "rating": 5,
+        "reviewTitle": "Elegant and Comfortable",
+        "comment": "Beautiful black blouse, fits perfectly and feels very comfortable.",
+        "date": "09/2025"
+      },
+      {
+        "username": "Rohit Sharma",
+        "rating": 4,
+        "reviewTitle": "Good Quality",
+        "comment": "Soft fabric, handloom texture is visible. Looks great with sarees.",
+        "date": "08/2025"
+      },
+      {
+        "username": "Priya Nair",
+        "rating": 5,
+        "reviewTitle": "Perfect for Festive Wear",
+        "comment": "Highly recommend for traditional occasions. Elegant design and fabric quality.",
+        "date": "08/2025"
+      },
+      {
+        "username": "Lakshmi Iyer",
+        "rating": 4,
+        "reviewTitle": "Stylish Handloom Blouse",
+        "comment": "Vibrant texture and comfortable to wear. True to size.",
+        "date": "07/2025"
+      }
+    ],
+    "sku": "BL-MODEL-BLOUSE-004",
+    "availabilityStatus": "In stock",
+    "stock": 30,
+    "shippingInformation": "Ships in 3–5 business days",
+    "returnPolicy": "7 day return (if unused & in original condition)",
+    "minimumOrderQuantity": [
+      { "qty": 1, "price": 1499 }
+    ],
+    "sizes": [
+      { "size": "Standard", "price": 1499 }
+    ],
+    "colors": ["Black"],
+    "updatedAt": "2025-09-23T08:55:00.000Z",
+    "sales": 50,
+    "isTrending": true,
+    "link": "https://thenmozhidesigns.com/products/black-model-blouse"
   },
   {
     "id": 2002,
     "title": "Burnt Orange and Purple Border Chettinad Cotton Blouse",
     "category": "blouse",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/reel/DOPyBSCkZe0/",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/BurntorangeandpurpleborderChettinadcottonsaree_1.jpg?v=1758160772&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/BurntorangeandpurpleborderChettinadcottonsaree_5.jpg?v=1758160772&width=800",
@@ -1055,79 +1128,6 @@ export const products = [
     "isTrending": true,
     "link": "https://thenmozhidesigns.com/products/deep-wine-pink-and-black-border-chettinad-cotton-blouse"
   }, {
-    "id": 2004,
-    "title": "Black Model Blouse",
-    "category": "blouse",
-    "brand": "Thenmozhi Designs",
-    "video": "https://thenmozhidesigns.com/cdn/shop/videos/c/vp/f90be60da1d6463fb9da6c34c3d3a059/f90be60da1d6463fb9da6c34c3d3a059.HD-1080p-2.5Mbps-43634179.mp4?v=0",
-    "images": [
-      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4169copy.jpg?v=1740974226&width=800",
-      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4171copy.jpg?v=1740974226&width=800",
-      "https://thenmozhidesigns.com/cdn/shop/files/PRAK4176copy.jpg?v=1740974226&width=800"
-    ],
-    "price": 1499,
-    "discount": 15,
-    "description": "A sleek and elegant black model blouse from Thenmozhi Designs. Handloom-crafted for comfort and style, this blouse pairs perfectly with traditional sarees for festive occasions, casual gatherings, or ethnic events.",
-    "product_specs": {
-      "Category": "Blouse",
-      "Fabrics": "Cotton / Silk Blend",
-      "Origin": "Tamil Nadu",
-      "Occasion": "Festive / Casual Wear",
-      "Craft": "Handloom",
-      "Blouse Type": "Ready-to-wear",
-      "Blouse Color": "Black",
-      "Blouse Dimension": "Standard Size",
-      "Color": "Black",
-      "Wash Care": "Hand Wash / Mild Detergent"
-    },
-    "rating": 4.5,
-    "reviews": [
-      {
-        "username": "Anjali Menon",
-        "rating": 5,
-        "reviewTitle": "Elegant and Comfortable",
-        "comment": "Beautiful black blouse, fits perfectly and feels very comfortable.",
-        "date": "09/2025"
-      },
-      {
-        "username": "Rohit Sharma",
-        "rating": 4,
-        "reviewTitle": "Good Quality",
-        "comment": "Soft fabric, handloom texture is visible. Looks great with sarees.",
-        "date": "08/2025"
-      },
-      {
-        "username": "Priya Nair",
-        "rating": 5,
-        "reviewTitle": "Perfect for Festive Wear",
-        "comment": "Highly recommend for traditional occasions. Elegant design and fabric quality.",
-        "date": "08/2025"
-      },
-      {
-        "username": "Lakshmi Iyer",
-        "rating": 4,
-        "reviewTitle": "Stylish Handloom Blouse",
-        "comment": "Vibrant texture and comfortable to wear. True to size.",
-        "date": "07/2025"
-      }
-    ],
-    "sku": "BL-MODEL-BLOUSE-004",
-    "availabilityStatus": "In stock",
-    "stock": 30,
-    "shippingInformation": "Ships in 3–5 business days",
-    "returnPolicy": "7 day return (if unused & in original condition)",
-    "minimumOrderQuantity": [
-      { "qty": 1, "price": 1499 }
-    ],
-    "sizes": [
-      { "size": "Standard", "price": 1499 }
-    ],
-    "colors": ["Black"],
-    "updatedAt": "2025-09-23T08:55:00.000Z",
-    "sales": 50,
-    "isTrending": true,
-    "link": "https://thenmozhidesigns.com/products/black-model-blouse"
-  }, {
     "id": 2005,
     "title": "Black Full Sleeve Blouse",
     "category": "blouse",
@@ -1206,7 +1206,7 @@ export const products = [
     "title": "White and Lavender Border Chettinad Cotton Blouse",
     "category": "blouse",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/reel/DO2Ufr8gb-D/",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/352A0274_70351ca4-5ad3-40d2-a327-392fc97ca50d.jpg?v=1758515025&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/352A0290.jpg?v=1758158948&width=800"
@@ -1278,7 +1278,7 @@ export const products = [
     "title": "Red Sleeveless Blouse",
     "category": "blouse",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/reel/DHm8vG4Sn8-/",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/PRAK9192.jpg?v=1744461160&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/PRAK9187.jpg?v=1744461160&width=800",
@@ -1351,7 +1351,7 @@ export const products = [
     "title": "French Violet Anarkali Chettinad Salwar",
     "category": "salwar suits",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/p/DM6iLwLSzIw/",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/FrenchvioletAnarkaliChettinadsalwar_4_89462342-342a-4fec-a5a6-309af5a527a6.jpg?v=1757481200&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/FrenchvioletAnarkaliChettinadsalwar_6_2b4a2662-1621-4f01-a9ba-e7294a43820f.jpg?v=1757481200&width=800",
@@ -1426,7 +1426,7 @@ export const products = [
     "title": "Royal Blue Block Printed Salwar Suit",
     "category": "salwar suits",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/reel/DOAT5o7kfES/",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/RoyalBlueBlockPrintedSalwarSuit_4.jpg?v=1755858195&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/RoyalBlueBlockPrintedSalwarSuit_5.jpg?v=1755858195&width=800",
@@ -1500,7 +1500,7 @@ export const products = [
     "title": "Pink with Black Anarkali Chettinad Salwar",
     "category": "salwar suits",
     "brand": "Thenmozhi Designs",
-    "video": "https://www.instagram.com/reel/DOaEbvMEcqZ",
+    "video": null,
     "images": [
       "https://thenmozhidesigns.com/cdn/shop/files/PinkwithblackAnarkaliChettinadsalwar_13.jpg?v=1757403689&width=800",
       "https://thenmozhidesigns.com/cdn/shop/files/PinkwithblackAnarkaliChettinadsalwar_15.jpg?v=1757481119&width=800",

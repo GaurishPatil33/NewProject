@@ -442,8 +442,8 @@ export const CategoryListType2 = ({
                   lg:grid-cols-4
                 `}
                 >
-                  {group.map((cat) => (
-                    <Link key={cat.slug} href={`${basePath}?cat=${cat.slug}`}>
+                  {group.map((cat,i) => (
+                    <Link key={i} href={`${basePath}?cat=${cat.slug}`}>
                       <div className="relative rounded-tl-2xl rounded-br-2xl overflow-hidden group aspect-[4/5] ">
                         <img
                           src={cat.image}

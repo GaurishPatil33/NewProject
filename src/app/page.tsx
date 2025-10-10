@@ -3,8 +3,9 @@ import CategoryList, { CategoryListType2 } from "@/components/CategoryList";
 import CategoryStories from "@/components/CategoryStories";
 import FeatureStrip from "@/components/FeaturesStrip";
 import { ImageBanner2 } from "@/components/ImageBanner";
-import { ProductCardType2 } from "@/components/ProductCard";
 import {
+  ProductList,
+  ProductList3,
   ProductListType2,
   ProductsGrid,
 } from "@/components/ProductList";
@@ -68,7 +69,8 @@ export default function Home() {
         displayType="grid"
       />
 
-      <ProductListType2 products={sarees} title="Best Seller - Sarees" />
+      {/* <ProductListType2 products={sarees} title="Best Seller - Sarees" /> */}
+      <ProductList3 products={sarees} title="Best Seller - Sarees" />
       {/* Shop by Occasion */}
       <CategoryListType2
         data={occasions}
@@ -77,11 +79,8 @@ export default function Home() {
       />
 
       {/* products */}
-      <ProductListType2
-        products={kurtas}
-        title="Best Seller - Kurtas/Salwars"
-      />
-     
+      {/* <ProductList products={kurtas} title="Best Seller - Kurtas/Salwars" /> */}
+      <ProductList3 products={kurtas} title="Best Seller - Kurtas/Salwars" />
 
       <ProductsGrid
         products={randomProducts}
