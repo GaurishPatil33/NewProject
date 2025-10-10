@@ -121,7 +121,7 @@ export const ProductCard = ({
     >
       <div className=" relative rounded-tr-3xl xs:px-4 shadow-lg rounded-bl-3xl overflow-hidden ">
         <div
-          className="relative w-full min-h-80  md:h-120 hover:scale-105  "
+          className="relative w-full min-h-70  md:h-120 hover:scale-105  "
           onClick={() => router.push(`/product/${product.id}`)}
         >
           <motion.img

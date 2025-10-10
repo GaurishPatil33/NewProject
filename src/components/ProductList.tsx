@@ -363,11 +363,11 @@ export const ProductListType2 = ({
             if (id) setActiveId(id);
           }}
           breakpoints={{
-            640: { slidesPerView: 3 },
+            640: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 4 },
           }}
-          className="overflow-hidden gap-2 space-x-2"
+          className="overflow-hidden gap-2 "
         >
           {products.map((p, i) => (
             <SwiperSlide key={p.id}>

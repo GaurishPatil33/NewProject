@@ -434,16 +434,18 @@ const ProductPage = () => {
               </div>
 
               <div
-                className=" w-fit flex gap-1 items-center"
+                className="cursor-pointer flex flex-wrap items-center leading-snug"
                 onClick={handleWhatsApp}
               >
-                <div className=" ">
-                  You can konw more about product on whatsapp
-                </div>
-                <button className="  text-primary hover:scale-101 ">
-                  <BsWhatsapp className="size-5" />
-                </button>
+                <span>
+                  You can know more about the product on{" "}
+                  <span className="inline-flex items-center">
+                    WhatsApp
+                    <BsWhatsapp className="inline-block size-4 text-green-500 ml-1 align-baseline" />
+                  </span>
+                </span>
               </div>
+
               {/* shipping,return and Warranty */}
               {/* <div className="grid grid-cols-2  p-2 md:p-6   border-y border-gray-400">
                 <div className="flex items-center justify-center space-x-3">
@@ -617,7 +619,7 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductListType2 products={relatedProducts} />
+            <ProductList products={relatedProducts} />
           </div>
 
           {/* sticky cart button for mobile View */}
