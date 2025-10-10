@@ -1,6 +1,18 @@
 import { Product } from "@/lib/types";
+import { img } from "framer-motion/client";
 import { Star, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useState } from "react";
+
+const reviewImages = [
+  "/reviewImages/1.jpeg",
+  "/reviewImages/2.jpeg",
+  "/reviewImages/3.jpeg",
+  "/reviewImages/4.jpeg",
+  "/reviewImages/5.jpeg",
+  "/reviewImages/6.jpeg",
+  "/reviewImages/7.jpeg",
+  "/reviewImages/8.jpeg",
+];
 
 export default function Reviews({ product }: { product: Product }) {
   const [showAll, setShowAll] = useState(false);
@@ -11,8 +23,8 @@ export default function Reviews({ product }: { product: Product }) {
 
   return (
     <div className="space-y-1 md:space-y-3 flex flex-col md:flex-row gap-3">
-      <div className="bg-white py-2 px-3 md:px-6 md:py-4 rounded-xl shadow-sm border border-gray-100">
-        <div className="flex  justify-between mb-2 md:mb-4 flex-col md:flex-row ">
+      <div className="bg-white h-fit md:sticky md:top-12   py-2 px-3 md:px-6 md:py-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="flex  justify-between mb-2 md:mb-4 flex-col  ">
           <h3 className="text-lg font-semibold">Customer Reviews</h3>
           <div className="flex items-center space-x-2">
             <div className="flex items-center">
@@ -58,7 +70,7 @@ export default function Reviews({ product }: { product: Product }) {
           })}
         </div>
       </div>
-      <div className="flex gap-2 overflow-x-auto pb-4 ">
+      <div className=" gap-2 overflow-x-auto pb-4 space-y-2 ">
         {displayedReviews.map((review, i) => (
           <div
             key={i}
@@ -100,6 +112,9 @@ export default function Reviews({ product }: { product: Product }) {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className=" aspect-[4/6] max-h-20 overflow-hidden my-3">
+                <img src={reviewImages[i]} className="size-full object-cover" />
               </div>
               <div className="mt-2 font-medium text-xs text-gray-900">
                 {review.comment}

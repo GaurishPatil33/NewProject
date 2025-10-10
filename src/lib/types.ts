@@ -36,6 +36,7 @@ export interface Review {
   rating: number;
   reviewTitle: string;
   comment: string;
+  image?:string
   date: string;
 }
 

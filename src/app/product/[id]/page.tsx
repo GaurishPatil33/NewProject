@@ -431,20 +431,16 @@ const ProductPage = () => {
                 >
                   Buy Now
                 </button>
-                <button
-                  onClick={handleWhatsApp}
-                  className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
-                >
-                  <BsWhatsapp className="size-10" />
-                </button>
               </div>
 
               <div
-                className="md:hidden w-full flex gap-2 items-center"
+                className=" w-fit flex gap-1 items-center"
                 onClick={handleWhatsApp}
               >
-                <div className="">You can konw more on whatsapp</div>
-                <button className="w-fit h-full  text-primary   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2">
+                <div className=" ">
+                  You can konw more about product on whatsapp
+                </div>
+                <button className="  text-primary hover:scale-101 ">
                   <BsWhatsapp className="size-5" />
                 </button>
               </div>
@@ -494,7 +490,7 @@ const ProductPage = () => {
                 </h3>
 
                 {/* Pincode Input */}
-                <div className="flex items-center justify-between border rounded-md px-3 py-2">
+                <div className="flex items-center max-w-100 justify-between border rounded-md px-3 py-2">
                   <input
                     id="pincode"
                     type="text"
