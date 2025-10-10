@@ -47,7 +47,7 @@ const SearchBar = ({ onSearch }: { onSearch?: () => void }) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 1 }}
               transition={{ duration: 0.7 }}
-              className=" text-[10px] md:text-sm"
+              className=" text-[12px] md:text-sm"
             >
               {placeholder[index]}...
             </motion.span>
