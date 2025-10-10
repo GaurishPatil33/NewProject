@@ -1,7 +1,7 @@
 export const client1 = {
     data: {
         name: "CHHABI",
-        logo: "client1/logo/chabi.png"
+        logo: "/client1/logo/chabi.png"
     }
     ,
     banners: [
@@ -52,7 +52,7 @@ export const client1 = {
 export const client2 = {
     data: {
         name: "GAJLAXMI",
-        logo: "client2/logo/gajlaxmi.jpg"
+        logo: "/client2/logo/gajlaxmi.jpg"
     }
     ,
     banners: [
@@ -98,7 +98,7 @@ export const client2 = {
 export const client3 = {
     data: {
         name: "SPICE",
-        logo: "client3/logo/spice.jpg"
+        logo: "/client3/logo/spice.jpg"
     }
     ,
     banners: [

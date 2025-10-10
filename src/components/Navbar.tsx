@@ -354,7 +354,7 @@ const Navbar = () => {
                 <Link href="/" aria-label="Go to homepage">
                   <div className="flex items-center gap-2">
                     <Image
-                      src={`/${clientlogo}`}
+                      src={`${clientlogo}`}
                       alt="Logo"
                       width={28}
                       height={28}
