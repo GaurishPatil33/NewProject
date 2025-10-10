@@ -151,14 +151,17 @@ const CategoryStories = () => {
               whileTap={{ scale: 0.95 }}
               className="flex-shrink-0 cursor-pointer"
             >
-              <div className="relative size-16 md:size-20 rounded-full overflow-hidden shadow-lg">
-                <img
-                  src={cat.image}
-                  alt={cat.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20 w-full h-full" />
+              <div className="relative p-0.5 rounded-full bg-gradient-to-r from-[#900001]/40 via-[#900001]/70 to-pink-900 overflow-hidden">
+                <div className="rounded-full overflow-hidden w-16 h-16 md:w-20 md:h-20">
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
               </div>
+
               <div className="text-[11px] md:text-sm font-medium text-[#900001] text-center max-w-20 truncate">
                 {cat.title}
               </div>
