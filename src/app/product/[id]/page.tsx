@@ -619,7 +619,7 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductList products={relatedProducts} />
+            <ProductList products={relatedProducts} title="Similar products" />
           </div>
 
           {/* sticky cart button for mobile View */}
