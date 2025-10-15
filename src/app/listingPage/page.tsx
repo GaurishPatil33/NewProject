@@ -34,6 +34,7 @@ import { FaFire } from "react-icons/fa";
 import { MdFiberNew } from "react-icons/md";
 import { color } from "framer-motion";
 import { ProductCard } from "@/components/ProductCard";
+import Loading from "@/components/Loading";
 
 interface FilterProps {
   id: string;
@@ -654,6 +655,9 @@ const ListingPageContent = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // loading state
+  if (loading) return <Loading />;
 
   return (
     <div className="relative  md:px-6 xl:px-10 mb-8 pt-4 md:pt-6">

@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/components/Loading";
 import {
   ProductList,
   ProductList3,
@@ -65,6 +66,8 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (!id) return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     try {
       setLoading(true);
 
@@ -221,7 +224,7 @@ const ProductPage = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-  if (loading) return <div className=" text-center mt10">Loading...</div>;
+  if (loading) return <Loading />;
 
   if (!product) {
     return (
