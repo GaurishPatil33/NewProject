@@ -1,8 +1,13 @@
 "use client";
-import { ProductList, ProductListType2 } from "@/components/ProductList";
+import {
+  ProductList,
+  ProductList3,
+  ProductListType2,
+} from "@/components/ProductList";
 import ProductMediaCorousal from "@/components/ProductMediaCorousal";
 import Reviews from "@/components/Reviews";
 import {
+  fetchAllProducts,
   fetchProductByCategory,
   fetchProductById,
 } from "@/lib/productfetching";
@@ -46,7 +51,7 @@ const ProductPage = () => {
   //   const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const id = params.id?.toString();
   const [product, setProduct] = useState<Product | null>(null);
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [pincode, setPincode] = useState("590000");
 
   const [quantity, setQuantity] = useState(1);
@@ -64,8 +69,8 @@ const ProductPage = () => {
     const getproduct = fetchProductById(id);
     if (getproduct) {
       setProduct(getproduct);
-      const getRelateProduct = fetchProductByCategory(getproduct.category);
-      setRelatedProducts(getRelateProduct);
+      const getProducts = fetchAllProducts();
+      setProducts(getProducts);
     }
     setLoading(false);
   }, [id]);
@@ -619,7 +624,21 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductList products={relatedProducts} title="Similar products" />
+            <ProductList3
+              products={products.filter((p) => p.category === product.category)}
+            />
+          </div>
+          <div className="mt-8">
+            <h3 className="text-2xl font-bold text-gray-900 ">
+              Check Products in other Categories
+            </h3>
+
+            <ProductList3
+              products={products
+                .filter((p) => p.category !== product.category)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 10)}
+            />
           </div>
 
           {/* sticky cart button for mobile View */}

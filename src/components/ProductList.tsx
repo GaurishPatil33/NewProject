@@ -450,7 +450,7 @@ export const ProductList3 = ({
 
   // ✅ Scroll active card into view
   useEffect(() => {
-    if (activeIndex === null) return;
+    if (!inView || activeIndex === null) return;
     const activeCard = scrollRef.current?.children[activeIndex] as HTMLElement;
     if (activeCard) {
       activeCard.scrollIntoView({
@@ -462,8 +462,14 @@ export const ProductList3 = ({
   }, [activeIndex]);
 
   useEffect(() => {
-    console.log("Active index:", activeIndex, "inView:", inView);
-  }, [activeIndex, inView]);
+    if (!inView) {
+      setActiveIndex(0); // reset when section is out of view
+    }
+  }, [inView]);
+
+  // useEffect(() => {
+  //   console.log("Active index:", activeIndex, "inView:", inView);
+  // }, [activeIndex, inView]);
 
   return (
     <div className="relative">
@@ -474,7 +480,7 @@ export const ProductList3 = ({
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="bg-white py-3 md:px-3 md:py-6 mx-auto px-2 ">
+        <div className="bg-white  md:px-3 pb-3 mx-auto px-2 ">
           {/* Section Title */}
           <motion.h2
             variants={fadeInUp}
