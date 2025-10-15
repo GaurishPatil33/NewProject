@@ -55,7 +55,7 @@ const ProductPage = () => {
   const [pincode, setPincode] = useState("590000");
 
   const [quantity, setQuantity] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const basePrice = product
     ? product?.price + (product?.price * product?.discount) / 100
     : 0;
@@ -65,14 +65,21 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (!id) return;
-    setLoading(true);
-    const getproduct = fetchProductById(id);
-    if (getproduct) {
-      setProduct(getproduct);
-      const getProducts = fetchAllProducts();
-      setProducts(getProducts);
+    try {
+      setLoading(true);
+
+      const getproduct = fetchProductById(id);
+      if (getproduct) {
+        setProduct(getproduct);
+        const getProducts = fetchAllProducts();
+        setProducts(getProducts);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, [id]);
 
   const [selectedProductConfig, setSelectedProductConfig] =
@@ -216,7 +223,7 @@ const ProductPage = () => {
 
   if (loading) return <div className=" text-center mt10">Loading...</div>;
 
- if (!product) {
+  if (!product) {
     return (
       <div className="min-h-screen bg-gray-50">
         {/* Breadcrumb */}
@@ -229,26 +236,29 @@ const ProductPage = () => {
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="flex flex-col items-center justify-center min-h-[500px] bg-white rounded-lg shadow-sm p-12">
             <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mb-6">
-              <svg 
-                className="w-16 h-16 text-gray-400" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-16 h-16 text-gray-400"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
             </div>
-            
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Product Not Found</h2>
+
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              Product Not Found
+            </h2>
             <p className="text-gray-600 text-center mb-8 max-w-md">
-              Sorry, we couldn't find the product you're looking for. It may have been removed or is currently unavailable.
+              Sorry, we couldn't find the product you're looking for. It may
+              have been removed or is currently unavailable.
             </p>
-            
+
             {/* <div className="flex space-x-4">
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors">
                 Go to Home
