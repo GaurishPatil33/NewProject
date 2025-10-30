@@ -87,11 +87,12 @@ const ProductPage = () => {
 
   const [selectedProductConfig, setSelectedProductConfig] =
     useState<ProductConfig>({
-      color: "red",
+      color: "",
       size: "",
       price: product?.price ?? 0,
       quantity: 1,
     });
+
   const colorOptions: ColorOptions[] = [
     {
       id: "Golden",
@@ -258,8 +259,8 @@ const ProductPage = () => {
               Product Not Found
             </h2>
             <p className="text-gray-600 text-center mb-8 max-w-md">
-              Sorry, we couldn&apose;t find the product you&apose;re looking for. It may
-              have been removed or is currently unavailable.
+              Sorry, we couldn&apose;t find the product you&apose;re looking
+              for. It may have been removed or is currently unavailable.
             </p>
 
             {/* <div className="flex space-x-4">
@@ -443,7 +444,7 @@ const ProductPage = () => {
                   </div>
                 )}
               </div>
-
+              {/* color */}
               <div className="w-full  ">
                 <h3 className=" text-lg font-semibold mb-2 text-gray-800">
                   Color:{" "}
@@ -522,6 +523,7 @@ const ProductPage = () => {
                 </button>
               </div>
 
+              {/* WhatsApp */}
               <div
                 className="cursor-pointer flex flex-wrap items-center leading-snug"
                 onClick={handleWhatsApp}
@@ -532,6 +534,16 @@ const ProductPage = () => {
                     WhatsApp
                     <BsWhatsapp className="inline-block size-4 text-green-500 ml-1 align-baseline" />
                   </span>
+                </span>
+              </div>
+
+              <div
+                className="cursor-pointer flex flex-wrap px-2 py-2 justify-center items-center leading-snug rounded-xl bg-[#900001]/80 "
+                onClick={handleWhatsApp}
+              >
+                <span className="text-white flex items-center">
+                 You can know more on WhatsApp
+                  <BsWhatsapp className="inline-block size-5 text-white ml-1 align-baseline" />
                 </span>
               </div>
 

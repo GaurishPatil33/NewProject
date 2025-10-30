@@ -159,7 +159,7 @@ const CategoryStories = () => {
       </div>
 
       {/* categories */}
-      <div className="max-w-6xl px-4 py-2 overflow-x-auto scrollbar-hide">
+      <div className="max-w-6xl px-4 pt-2 overflow-x-auto scrollbar-hide">
         <div className="flex space-x-3 ">
           {categories?.map((cat, i) => {
             const segments = Math.min(cat.products.length, 4); // max 4 arcs
@@ -187,7 +187,7 @@ const CategoryStories = () => {
                 whileTap={{ scale: 0.95 }}
                 className="flex-shrink-0 cursor-pointer"
               >
-                <div className="relative size-16 flex items-center justify-center">
+                <div className="relative size-16 md:size-20 flex items-center justify-center">
                   {/* Dynamic conic gradient ring */}
                   <div
                     className="absolute inset-0 rounded-full"

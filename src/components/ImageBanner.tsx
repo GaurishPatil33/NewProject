@@ -95,42 +95,79 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const ImageBanner2 = () => {
   const ismobile = useIsMobile();
   const selectedType = ismobile ? "mob" : "desk";
-
   const clientbanners = client1.banners;
+  const mobBanners = clientbanners.find((b) => b.type === "mob")?.images || [];
+  const deskBanners =
+    clientbanners.find((b) => b.type === "desk")?.images || [];
   const slides =
     clientbanners.find((item) => item.type === selectedType)?.images || [];
 
+  console.log(mobBanners, deskBanners);
+
   return (
     <div className="w-full relative group">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        navigation={{
-          nextEl: ".swiper-next",
-          prevEl: ".swiper-prev",
-        }}
-        pagination={{ clickable: true }}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        className="overflow-hidden"
-      >
-        {slides.map((slide, i) => (
-          <SwiperSlide key={`mob-${slide.id || i}`}>
-            <Link
-              href="/listingPage"
-              className="relative w-full aspect-[12/15]"
-            >
-              <img
-                src={slide.img}
-                alt={`Mobile Banner ${slide.id}`}
-                className="w-full h-full object-cover"
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="md:hidden">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+          }}
+          pagination={{ clickable: true }}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          className="overflow-hidden "
+        >
+          {mobBanners.map((slide, i) => (
+            <SwiperSlide key={`mob-${slide.id || i}`}>
+              <Link
+                href="/listingPage"
+                className="relative w-full aspect-[12/15]"
+              >
+                <img
+                  src={slide.img}
+                  alt={`Mobile Banner ${slide.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="hidden md:block">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+          }}
+          pagination={{ clickable: true }}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          className="overflow-hidden "
+        >
+          {deskBanners.map((slide, i) => (
+            <SwiperSlide key={`mob-${slide.id || i}`}>
+              <Link
+                href="/listingPage"
+                className="relative w-full aspect-[12/15]"
+              >
+                <img
+                  src={slide.img}
+                  alt={`Mobile Banner ${slide.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       {/* Custom Prev Button */}
       <button className="swiper-prev flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
