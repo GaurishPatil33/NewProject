@@ -517,14 +517,14 @@ const ProductPage = () => {
                 <button
                   onClick={handleBuyNow}
                   disabled={product.stock === 0}
-                  className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/60 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
+                  className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/80 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105  flex items-center justify-center space-x-2"
                 >
                   Buy Now
                 </button>
               </div>
 
               {/* WhatsApp */}
-              <div
+              {/* <div
                 className="cursor-pointer flex flex-wrap items-center leading-snug"
                 onClick={handleWhatsApp}
               >
@@ -535,7 +535,7 @@ const ProductPage = () => {
                     <BsWhatsapp className="inline-block size-4 text-green-500 ml-1 align-baseline" />
                   </span>
                 </span>
-              </div>
+              </div> */}
 
               <div
                 className="cursor-pointer flex flex-wrap px-2 py-2 justify-center items-center leading-snug rounded-xl bg-[#900001]/80 "
@@ -770,7 +770,7 @@ const ProductPage = () => {
                 <button
                   onClick={handleBuyNow}
                   disabled={product.stock === 0}
-                  className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/60 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
+                  className="flex-1 bg-gradient-to-r from-[#900001]/90 to-[#900000]/80 text-white ring-1   md:px-2 py-2 rounded-xl font-semibold text-sm  transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
                 >
                   Buy Now
                 </button>
