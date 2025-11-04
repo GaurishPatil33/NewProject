@@ -66,8 +66,9 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (!id) return;
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
+    
     try {
       setLoading(true);
 
@@ -721,7 +722,9 @@ const ProductPage = () => {
             </h3>
 
             <ProductList3
-              products={products.filter((p) => p.category === product.category)}
+              products={products.filter(
+                (p) => p.category === product.category && p.id !== product.id
+              )}
             />
           </div>
           <div className="mt-8">
