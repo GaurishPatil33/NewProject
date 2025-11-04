@@ -7,6 +7,7 @@ import {
 } from "@/components/ProductList";
 import ProductMediaCorousal from "@/components/ProductMediaCorousal";
 import Reviews from "@/components/Reviews";
+import Skeleton from "@/components/Skeleton";
 import {
   fetchAllProducts,
   fetchProductByCategory,
@@ -68,7 +69,7 @@ const ProductPage = () => {
     if (!id) return;
     // window.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo(0, 0);
-    
+
     try {
       setLoading(true);
 
@@ -226,7 +227,8 @@ const ProductPage = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-  if (loading) return <Loading />;
+  // if (loading) return <Loading />;
+  if (loading) return <Skeleton />;
 
   if (!product) {
     return (
@@ -721,7 +723,7 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductList3
+            <ProductListType2
               products={products.filter(
                 (p) => p.category === product.category && p.id !== product.id
               )}

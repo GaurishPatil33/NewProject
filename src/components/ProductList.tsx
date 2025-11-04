@@ -363,7 +363,7 @@ export const ProductsGrid = ({
                   onClick={() => {
                     router.push(`/listingpage/`);
                   }}
-                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 bg-amber-900/20 hover:scale-105"
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70  hover:scale-105"
                   }`}
                 >
                   <item.icon className="size-4" />
@@ -386,14 +386,15 @@ export const ProductsGrid = ({
               variants={fadeInUp}
               className="relative snap-start h-fit flex-shrink-0"
             >
-              <ProductCard3
+              {/* <ProductCard3
                 product={p}
                 index={i}
                 isActive={p.id === activeId && !!p.video} // only play if video exists
                 onActiveChange={(nextIndex) =>
                   setActiveId(products[nextIndex % products.length].id)
                 }
-              />
+              /> */}
+              <ProductCard product={p} index={i}/>
             </motion.div>
           ))}
         </motion.div>
