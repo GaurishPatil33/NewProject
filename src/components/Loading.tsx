@@ -176,3 +176,13 @@ const Loading = () => {
 };
 
 export default Loading;
+
+export const Loading2=()=>{
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+      <div className=" w-20 h-20 overflow-hidden rounded-full flex items-center justify-center">
+        <img src={client1.data.logo} alt="" className=" w-full h-full object-cover" />
+      </div>
+    </div>
+  )
+}

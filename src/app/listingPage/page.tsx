@@ -34,7 +34,7 @@ import { FaFire } from "react-icons/fa";
 import { MdFiberNew } from "react-icons/md";
 import { color } from "framer-motion";
 import { ProductCard } from "@/components/ProductCard";
-import Loading from "@/components/Loading";
+import Loading, { Loading2 } from "@/components/Loading";
 
 interface FilterProps {
   id: string;
@@ -645,6 +645,10 @@ const ListingPageContent = () => {
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
   );
+  const scrollToTop = () => {
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0,0);
+  };
   useEffect(() => {
     if (paginatedProducts?.length <= 0 && currentPage > 1) setCurrentPage(1);
     scrollToTop();
@@ -652,12 +656,10 @@ const ListingPageContent = () => {
 
   console.log(filterOptions);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   // loading state
-  if (loading) return <Loading />;
+  // if (loading) return <Loading />;
+  if (loading) return <Loading2 />;
 
   return (
     <div className="relative  md:px-6 xl:px-10 mb-8 pt-4 md:pt-6">
