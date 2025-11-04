@@ -538,13 +538,13 @@ const ProductPage = () => {
               </div> */}
 
               <div
-                className="cursor-pointer flex flex-wrap px-2 py-2 justify-center items-center leading-snug rounded-xl bg-[#900001]/80 "
+                className="cursor-pointer flex flex-wrap gap-1 mt-3  px-2 py-2 justify-center items-center leading-snug rounded-xl bg-green-50 border border-green-300 text-green-500 "
                 onClick={handleWhatsApp}
               >
-                <span className="text-white flex items-center">
-                 You can know more on WhatsApp
-                  <BsWhatsapp className="inline-block size-5 text-white ml-1 align-baseline" />
+                <span className="text-green-500 flex items-center">
+                  You can know more on WhatsApp
                 </span>
+                <BsWhatsapp className="inline-block size-5 text-green-500  ml-1 align-baseline" />
               </div>
 
               {/* shipping,return and Warranty */}

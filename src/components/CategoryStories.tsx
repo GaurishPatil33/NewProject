@@ -1,10 +1,7 @@
 "use client";
 
 import { useShare } from "@/lib/hooks/helperFunctions";
-import {
-  fetchAllProducts,
-  fetchCategories,
-} from "@/lib/productfetching";
+import { fetchAllProducts, fetchCategories } from "@/lib/productfetching";
 import { Product } from "@/lib/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, X } from "lucide-react";
@@ -21,6 +18,9 @@ interface Category {
 
 const CategoryStories = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>();
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<
+    number | null
+  >(null);
   const [categories, setCategories] = useState<Category[]>([]);
   // const [products, setProducts] = useState<Product[]>([]);
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -38,9 +38,7 @@ const CategoryStories = () => {
 
         // create combined structure
         const combined = cat.map((c) => {
-          const related = pro
-            .filter((p) => p.category === c.slug)
-            .slice(0, 4); // take up to 4
+          const related = pro.filter((p) => p.category === c.slug).slice(0, 4); // take up to 4
 
           return {
             ...c,
@@ -57,31 +55,27 @@ const CategoryStories = () => {
     fetch();
   }, []);
 
-  /** ───── Fetch Products by Category ───── */
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     try {
-  //       if (selectedCategory) {
-  //         const product = await fetchProductByCategory(selectedCategory.slug);
-  //         setProducts(product.slice(1, 5));
-  //         // console.log(product);
-  //       }
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetch();
-  // }, [selectedCategory]);
-
   /** ───── Show preview image 2s before video ───── */
   useEffect(() => {
-    setShowVideo(false);
+  setShowVideo(false);
 
-    if (selectedCategory?.products[currentProductIndex]?.video) {
-      const timer = setTimeout(() => setShowVideo(true), 1100);
-      return () => clearTimeout(timer);
-    }
-  }, [currentProductIndex]);
+  const current = selectedCategory?.products[currentProductIndex];
+  if (!current) return;
+
+  // If product has video: first show image preview → then play video
+  if (current.video) {
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+      videoRef.current?.play?.();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  } else {
+    // Ensure fallback for image products
+    setShowVideo(false);
+  }
+}, [selectedCategory, selectedCategoryIndex, currentProductIndex]);
+
 
   /** ───── Auto progression ───── */
   useEffect(() => {
@@ -131,18 +125,39 @@ const CategoryStories = () => {
   const handleHoldEnd = () => videoRef.current?.play();
 
   const openModal = (cat: Category) => {
+    const index = categories.findIndex((c) => c.slug === cat.slug);
     setSelectedCategory(cat);
+    setSelectedCategoryIndex(index);
     setCurrentProductIndex(0);
   };
+
   const closeModal = () => {
     setSelectedCategory(undefined);
     setCurrentProductIndex(0);
   };
 
-  const nextProduct = () =>
-    setCurrentProductIndex((prev) =>
-      prev < (selectedCategory?.products?.length ?? 0) - 1 ? prev + 1 : 0
-    );
+  const nextProduct = () => {
+    if (!selectedCategory || selectedCategoryIndex === null) return;
+
+    // If not last product → go to next product
+    if (currentProductIndex < selectedCategory.products.length - 1) {
+      setCurrentProductIndex((prev) => prev + 1);
+      return;
+    }
+
+    // Otherwise move to next category
+    const nextCatIndex =
+      selectedCategoryIndex < categories.length - 1
+        ? selectedCategoryIndex + 1
+        : 0; // wrap to first category (optional)
+
+    const nextCat = categories[nextCatIndex];
+
+    setSelectedCategory(nextCat);
+    setSelectedCategoryIndex(nextCatIndex);
+    setCurrentProductIndex(0);
+    setShowVideo(false);
+  };
 
   const prevProduct = () =>
     setCurrentProductIndex((prev) =>
