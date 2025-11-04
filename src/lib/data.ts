@@ -18,7 +18,7 @@ export const Categories = [
   },
   {
     title: "Lehengas",
-    slug: "lehengas",
+    slug: "",
     image: "https://www.taneira.com/on/demandware.static/-/Sites-Taneira-Library/default/dw8d3e577f/HomePage/ShopByCategory/Lehengas_003_M.png",
   },
 ]
