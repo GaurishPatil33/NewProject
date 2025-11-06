@@ -40,8 +40,8 @@ const Navbar = () => {
   const [showBar, setShowBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const clientlogo = client1.data.logo;
-  const clientname = client1.data.name;
+  const clientlogo = client2.data.logo;
+  const clientname = client2.data.name;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,7 +157,7 @@ const Navbar = () => {
                 alt="Logo"
                 width={48}
                 height={48}
-                className=" size-full  object-contain   "
+                className=" size-full  object-cover scale-110   "
                 // priority
               />
             </motion.div>

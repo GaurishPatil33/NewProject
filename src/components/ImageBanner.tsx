@@ -95,7 +95,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const ImageBanner2 = () => {
   const ismobile = useIsMobile();
   const selectedType = ismobile ? "mob" : "desk";
-  const clientbanners = client1.banners;
+  const clientbanners = client2.banners;
   const mobBanners = clientbanners.find((b) => b.type === "mob")?.images || [];
   const deskBanners =
     clientbanners.find((b) => b.type === "desk")?.images || [];

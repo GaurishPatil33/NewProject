@@ -87,7 +87,6 @@ export default function Home() {
         title="Checkout our other products"
       />
 
-      {randomProducts.length}
     </div>
   );
 }
