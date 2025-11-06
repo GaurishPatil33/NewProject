@@ -1,5 +1,5 @@
 "use client";
-import { client1, client2 } from "@/lib/clientdata";
+import { client1, client2, client3 } from "@/lib/clientdata";
 import { Categories } from "@/lib/data";
 import {
   Facebook,
@@ -31,7 +31,7 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const client=client2.data
+  const client = client3.data;
 
   return (
     <div className="relative">
@@ -60,13 +60,14 @@ const Footer = () => {
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="relative">
                     <img
-src={client.logo}                      alt="CHHABI Logo"
+                      src={client.logo}
+                      alt="CHHABI Logo"
                       className="w-12 h-12 rounded-full ring-2 ring-white/20 ring-offset-2 ring-offset-transparent"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/20 to-purple-500/20 blur-sm"></div>
                   </div>
                   <span className="text-2xl font-bold bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent">
-                   {client.name}
+                    {client.name}
                   </span>
                 </div>
                 <p className="text-gray-300 leading-relaxed mb-6">

@@ -1,5 +1,5 @@
 "use client";
-import { client1, client2 } from "@/lib/clientdata";
+import { client1, client2, client3 } from "@/lib/clientdata";
 import { useIsMobile } from "@/lib/hooks/useIsMobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -95,7 +95,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 export const ImageBanner2 = () => {
   const ismobile = useIsMobile();
   const selectedType = ismobile ? "mob" : "desk";
-  const clientbanners = client2.banners;
+  const clientbanners = client3.banners;
   const mobBanners = clientbanners.find((b) => b.type === "mob")?.images || [];
   const deskBanners =
     clientbanners.find((b) => b.type === "desk")?.images || [];

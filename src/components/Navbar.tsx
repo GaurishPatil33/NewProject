@@ -24,7 +24,7 @@ import { Categories } from "@/lib/data";
 import CartSidebar from "./CartSidebar";
 import WishlistSidebar from "./WishlistSidebar";
 import SearchBar from "./Search";
-import { client1, client2 } from "@/lib/clientdata";
+import { client1, client2, client3 } from "@/lib/clientdata";
 
 const Navbar = () => {
   const router = useRouter();
@@ -40,8 +40,8 @@ const Navbar = () => {
   const [showBar, setShowBar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const clientlogo = client2.data.logo;
-  const clientname = client2.data.name;
+  const clientlogo = client3.data.logo;
+  const clientname = client3.data.name;
 
   useEffect(() => {
     const handleScroll = () => {
