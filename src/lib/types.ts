@@ -21,7 +21,7 @@ export interface Product {
   shippingInformation: string;
   returnPolicy: string;
   minimumOrderQuantity?: { qty: number, price: number }[];
-  sizes?: { size: string, price: number }[];
+  sizes?: { size: string, price: number }[]|undefined;
   colors?: string[];
   updatedAt: string
   sales: number
@@ -43,8 +43,15 @@ export interface Review {
 
 export interface CartItem {
   product: Product
-  price: number
-  quantity: number
+  basePrice: number,         // original per-piece price
+  finalPrice: number,        // discounted per-piece price
+  discount: number,          // applied discount %
+  totalprice: number, ProductConfig: {
+    color?: string;
+    size?: string;
+    price?: number;
+    quantity: number;
+  }
   attributes?: { name: string, value: string }[]
   sku?: string
   selected?: boolean

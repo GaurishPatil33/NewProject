@@ -194,7 +194,7 @@ const ProductPage = () => {
     if (alreadyInCart) {
       showToast("Product already in your Cart 🛒");
     } else {
-      addToCart(product, quantity);
+      addToCart(product, selectedProductConfig);
       showToast(`Added to Cart 🛒 ${quantity ? `Qty (${quantity})` : ""}`);
     }
   };
@@ -210,7 +210,7 @@ const ProductPage = () => {
 
   const handleBuyNow = () => {
     if (!product) return;
-    buyNow(product, quantity);
+    buyNow(product, selectedProductConfig);
     router.push(`/checkout`);
   };
 

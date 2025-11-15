@@ -81,7 +81,8 @@ const WishlistSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
         <div className=" flex items-center gap-3  w-full border-dotted border-t border-gray-200  py-1 md:py-2">
           <button
             onClick={() => {
-              addToCart(p);
+              addToCart(p, { price: p.price, quantity: 1 });
+
               removeFromWishlist(p.id);
             }}
             aria-label="Remove item"

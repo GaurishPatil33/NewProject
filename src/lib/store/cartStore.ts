@@ -8,7 +8,7 @@ export interface CartStore {
     cart: CartItem[];
     // addToCart: (item: CartItem) => void;
     // addToCart: (product: Product, varient?: ProductVariant, quantity?: number) => void;
-    addToCart: (product: Product, quantity?: number) => void;
+    addToCart: (product: Product, config: CartItem["ProductConfig"]) => void;
     removeFromCart: (id: number) => void;
     updateQuantity: (id: number, quantity: number) => void;
     clearCart: () => void;
@@ -32,8 +32,27 @@ export interface CartStore {
     isInWishlist: (id: number) => boolean;
 
 
-    buyNow: (product: Product, quantity: number) => void
+    buyNow: (product: Product, config: CartItem["ProductConfig"]) => void
 }
+
+const calculatePrice = (product: Product, quantity: number, basePrice: number) => {
+    const moq = [
+        { qty: 1, discount: product?.discount ?? 0 },
+        { qty: 5, discount: (product?.discount ?? 0) + 5 },
+        { qty: 10, discount: (product?.discount ?? 0) + 10 },
+        { qty: 25, discount: (product?.discount ?? 0) + 15 },
+        { qty: 100, discount: (product?.discount ?? 0) + 20 },
+    ];
+    const tier = [...moq].reverse().find(t => quantity >= t.qty);
+    const discount = tier?.discount ?? product?.discount ?? 0;
+
+    const finalPrice = Math.round(basePrice - (basePrice * discount) / 100);
+    const totalPrice = finalPrice * quantity;
+
+    return { discount, finalPrice, totalPrice };
+};
+
+
 
 export const useCartStore = create<CartStore>()(
     persist(
@@ -41,27 +60,51 @@ export const useCartStore = create<CartStore>()(
             cart: [],
             wishlist: [],
 
-            addToCart: (product, quantity = 1) => {
-
-
+            addToCart: (product, config) => {
+                const basePrice = config.price ?? product.price ?? 0;
                 const existing = get().cart.find(item => item.product.id === product.id);
+
                 if (existing) {
+                    const newQty = existing.ProductConfig.quantity + config.quantity;
+                    const { discount, finalPrice, totalPrice } = calculatePrice(product, newQty, basePrice);
+
                     set({
-                        cart: get().cart.map(item => item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item)
-                    })
+                        cart: get().cart.map(item =>
+                            item.product.id === product.id
+                                ? {
+                                    ...item,
+                                    ProductConfig: { ...item.ProductConfig, quantity: newQty },
+                                    basePrice,
+                                    finalPrice,
+                                    discount,
+                                    totalprice: totalPrice, // ✅ full recalculation
+                                }
+                                : item
+                        )
+                    });
                 } else {
+                    const { discount, finalPrice, totalPrice } = calculatePrice(product, config.quantity, basePrice);
+
                     set({
-                        cart: [...get().cart, {
-                            product: product,
-                            price: product.price,
-                            quantity,
-                            attributes: [],
-                            sku: "",
-                            selected: true,
-                        }]
-                    })
+                        cart: [
+                            ...get().cart,
+                            {
+                                product,
+                                basePrice,
+                                finalPrice,
+                                discount,
+                                totalprice: totalPrice,
+                                ProductConfig: { ...config, price: basePrice },
+                                attributes: [],
+                                sku: "",
+                                selected: true,
+                            },
+                        ]
+                    });
                 }
             },
+
+
 
             removeFromCart: (id) => {
                 set({
@@ -71,9 +114,22 @@ export const useCartStore = create<CartStore>()(
 
             updateQuantity: (id, quantity) => {
                 set({
-                    cart: get().cart.map(i => i.product.id === id ? { ...i, quantity } : i)
-                })
+                    cart: get().cart.map(i => {
+                        if (i.product.id !== id) return i;
+                        const basePrice = i.basePrice ?? i.product.price ?? 0;
+                        const { discount, finalPrice, totalPrice } = calculatePrice(i.product, quantity, basePrice);
+
+                        return {
+                            ...i,
+                            ProductConfig: { ...i.ProductConfig, quantity },
+                            discount,
+                            finalPrice,
+                            totalprice: totalPrice,
+                        };
+                    })
+                });
             },
+
 
             toggleSelect: (id) => {
                 set({
@@ -123,13 +179,14 @@ export const useCartStore = create<CartStore>()(
                 })
             },
 
-            cartTotal: () => get().cart.reduce((total, item) => total + item.price * item.quantity, 0),
+            cartTotal: () => get().cart.reduce((total, item) => total + item.totalprice, 0),
 
-            cartItemsCount: () => get().cart.reduce((total, item) => total + item.quantity, 0),
+            cartItemsCount: () => get().cart.reduce((total, item) => total + item.ProductConfig.quantity, 0),
 
             selectedCartItems: () => get().cart.filter(i => i.selected),
 
-            selectedCartTotal: () => get().cart.filter(i => i.selected).reduce((total, item) => total + item.price * item.quantity, 0),
+            selectedCartTotal: () =>
+                get().cart.filter(i => i.selected).reduce((total, item) => total + item.totalprice, 0),
 
             addToWishlist: (item) => {
                 if (!get().wishlist.find(i => i.id === item.id)) {
@@ -160,23 +217,31 @@ export const useCartStore = create<CartStore>()(
                 return !!get().cart.find(i => i.product.id === id)
 
             },
-            buyNow: (product, quantity) => {
-                set({ cart: get().cart.map(item => item.product.id === product.id ? { ...item, quantity, selected: true } : { ...item, selected: false }) });
-                if (!get().isInCart(product.id)) {
-                    set({
-                        cart: [...get().cart.map(item => ({ ...item, selected: false })), {
-                            product: product,
-                            price: product.price,
-                            quantity,
+            buyNow: (product, config) => {
+                const basePrice = config.price ?? product.price ?? 0;
+                const { discount, finalPrice, totalPrice } = calculatePrice(product, config.quantity, basePrice);
+
+                set({
+                    cart: [
+                        ...get().cart.map(item => ({ ...item, selected: false })), // deselect others
+                        {
+                            product,
+                            basePrice,
+                            finalPrice,
+                            discount,
+                            totalprice: totalPrice,
+                            ProductConfig: { ...config, price: basePrice },
                             attributes: [],
                             sku: "",
                             selected: true,
-                        }]
-                    })
-                };
-            },
+                        },
+                    ]
+                });
+            }
+
+
 
         }),
-        { name: "cart-store1", }
+        { name: "cart-store2", }
     )
 );

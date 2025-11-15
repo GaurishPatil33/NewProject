@@ -104,7 +104,7 @@ export const ProductCard = ({
       removeFromCart(product.id);
     } else {
       showToast("Adde  to Cart 🛒");
-      addToCart(product);
+      addToCart(product, { price: product.price, quantity: 1 });
     }
   };
 
@@ -285,7 +285,7 @@ export const ProductCardType2 = ({
       removeFromCart(product.id);
     } else {
       showToast("Adde  to Cart 🛒");
-      addToCart(product);
+      addToCart(product, { price: product.price, quantity: 1 });
     }
   };
   return (
@@ -469,7 +469,7 @@ export const ProductCard3 = ({
       removeFromCart(product.id);
     } else {
       showToast("Adde  to Cart 🛒");
-      addToCart(product);
+      addToCart(product, { price: product.price, quantity: 1 });
     }
   };
 
