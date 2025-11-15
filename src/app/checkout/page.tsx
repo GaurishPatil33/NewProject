@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import ProgressBar, { Step } from "./components/progressBar";
 import PriceSummary from "./components/priceSummary";
 import { useUserStore } from "@/lib/store/userStore";
-import AuthForm from "../auth/AuthForm";
+// import AuthForm from "../auth/AuthForm";
 import AddressModal from "./components/AddressModal";
 import Payments, { PaymentMethod } from "./components/Payments";
 import CheckoutProductList from "./components/CheckoutProductList";
@@ -259,7 +259,7 @@ const CheckoutPage = () => {
         clear Orders
       </div> */}
 
-      {showAuth && <AuthForm onClose={() => setShowAuth(false)} />}
+      {/* {showAuth && <AuthForm onClose={() => setShowAuth(false)} />} */}
     </div>
   );
 };
