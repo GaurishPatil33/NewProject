@@ -29,6 +29,9 @@ export const ProductCard = ({
     //  threshold: 0.7, // 👈 play when 70% visible
     // triggerOnce: false,
   });
+  const mainPrice = Math.round(
+    product.price + (product.discount * product.price) / 100
+  );
   const {
     // wishlist,
     isInWishlist,
@@ -199,7 +202,7 @@ export const ProductCard = ({
             ₹{product.price}
           </div>
           <span className=" text-gray-500 text-[16px] line-through  ">
-            ₹{product.price + (product.discount * product.price) / 100}
+            ₹{mainPrice}
           </span>
           <span className=" text-[15px] flex items-center justify-center text-green-500">
             {product.discount}%Off
@@ -232,6 +235,9 @@ export const ProductCardType2 = ({
     //  threshold: 0.7, // 👈 play when 70% visible
     // triggerOnce: false,
   });
+  const mainPrice = Math.round(
+    product.price + (product.discount * product.price) / 100
+  );
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -371,7 +377,6 @@ export const ProductCardType2 = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        {" "}
         <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
@@ -380,7 +385,7 @@ export const ProductCardType2 = ({
             ₹{product.price}
           </div>
           <span className=" text-gray-500 text-[16px] line-through  ">
-            ₹{product.price + (product.discount * product.price) / 100}
+            ₹{mainPrice}
           </span>
           <span className=" text-[15px] flex items-center justify-center text-green-500">
             {product.discount}%Off
@@ -413,6 +418,9 @@ export const ProductCard3 = ({
     amount: 0.9,
     once: false,
   });
+  const mainPrice = Math.round(
+    product.price + (product.discount * product.price) / 100
+  );
   const {
     // wishlist,
     isInWishlist,
@@ -566,7 +574,7 @@ export const ProductCard3 = ({
             ₹{product.price}
           </div>
           <span className=" text-gray-500 text-[16px] line-through  ">
-            ₹{product.price + (product.discount * product.price) / 100}
+            ₹{mainPrice}
           </span>
           <span className=" text-[15px] flex items-center justify-center text-green-500">
             {product.discount}%Off
