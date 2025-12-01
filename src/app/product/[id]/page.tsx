@@ -723,7 +723,7 @@ const ProductPage = () => {
               Similar Products
             </h3>
 
-            <ProductListType2
+            <ProductList3
               products={products.filter(
                 (p) => p.category === product.category && p.id !== product.id
               )}
