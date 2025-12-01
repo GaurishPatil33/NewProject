@@ -162,3 +162,16 @@ input[type="range"]::-moz-range-thumb {
 
 
 /* custom range slider */
+
+
+
+
+/* default bullet */
+.custom-bullet {
+  @apply w-2 h-2 rounded-full bg-gray-300 transition-all duration-300;
+}
+
+/* active bullet */
+.custom-bullet.swiper-pagination-bullet-active {
+  @apply w-5 bg-black;
+}

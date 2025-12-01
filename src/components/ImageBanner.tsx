@@ -92,75 +92,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 //   );
 // };
 
+
 export const ImageBanner2 = () => {
   const ismobile = useIsMobile();
-  const selectedType = ismobile ? "mob" : "desk";
   const clientbanners = client1.banners;
-  const mobBanners = clientbanners.find((b) => b.type === "mob")?.images || [];
-  const deskBanners =
-    clientbanners.find((b) => b.type === "desk")?.images || [];
-  const slides =
-    clientbanners.find((item) => item.type === selectedType)?.images || [];
 
-  console.log(mobBanners, deskBanners);
+  const mobBanners = clientbanners.find((b) => b.type === "mob")?.images || [];
+  const deskBanners = clientbanners.find((b) => b.type === "desk")?.images || [];
+
+  const [current, setCurrent] = useState(0);
+  const [swiperRef, setSwiperRef] = useState<any>(null);
+
+  const slides = ismobile ? mobBanners : deskBanners;
 
   return (
     <div className="w-full relative group">
+
+      {/* MOBILE */}
       <div className="md:hidden">
         <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation={{
-            nextEl: ".swiper-next",
-            prevEl: ".swiper-prev",
-          }}
-          pagination={{ clickable: true }}
+          modules={[Navigation, Autoplay]}
+          onSwiper={setSwiperRef}
+          onSlideChange={(s) => setCurrent(s.realIndex)}
           loop={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
           }}
-          className="overflow-hidden "
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+          }}
+          className="overflow-hidden"
         >
           {mobBanners.map((slide, i) => (
-            <SwiperSlide key={`mob-${slide.id || i}`}>
-              <Link
-                href="/listingPage"
-                className="relative w-full aspect-[12/15]"
-              >
+            <SwiperSlide key={`mob-${i}`}>
+              <Link href="/listingPage" className="relative w-full aspect-[12/15]">
                 <img
                   src={slide.img}
-                  alt={`Mobile Banner ${slide.id}`}
-                  className="w-full h-full object-cover"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="hidden md:block">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          navigation={{
-            nextEl: ".swiper-next",
-            prevEl: ".swiper-prev",
-          }}
-          pagination={{ clickable: true }}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          className="overflow-hidden "
-        >
-          {deskBanners.map((slide, i) => (
-            <SwiperSlide key={`mob-${slide.id || i}`}>
-              <Link
-                href="/listingPage"
-                className="relative w-full aspect-[12/15]"
-              >
-                <img
-                  src={slide.img}
-                  alt={`Mobile Banner ${slide.id}`}
+                  alt="Mobile Banner"
                   className="w-full h-full object-cover"
                 />
               </Link>
@@ -169,15 +139,60 @@ export const ImageBanner2 = () => {
         </Swiper>
       </div>
 
-      {/* Custom Prev Button */}
-      <button className="swiper-prev flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+      {/* DESKTOP */}
+      <div className="hidden md:block">
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          onSwiper={setSwiperRef}
+          onSlideChange={(s) => setCurrent(s.realIndex)}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+          }}
+          className="overflow-hidden"
+        >
+          {deskBanners.map((slide, i) => (
+            <SwiperSlide key={`desk-${i}`}>
+              <Link href="/listingPage" className="relative w-full aspect-[12/15]">
+                <img
+                  src={slide.img}
+                  alt="Desktop Banner"
+                  className="w-full h-full object-cover"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* CUSTOM PAGINATION (shared for both) */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => swiperRef?.slideToLoop(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-2 rounded-full transition-all ${
+              i === current ? "bg-gray-900 w-5" : "bg-white/70 w-2"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* NAV BUTTONS */}
+      <button className="swiper-prev flex absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11 items-center justify-center rounded-full shadow-lg hover:bg-white transition">
         <ChevronLeft className="w-5 h-5" />
       </button>
 
-      {/* Custom Next Button */}
-      <button className="swiper-next flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11  items-center justify-center rounded-full shadow-lg hover:bg-white transition">
+      <button className="swiper-next flex absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 backdrop-blur-sm size-8 md:size-11 items-center justify-center rounded-full shadow-lg hover:bg-white transition">
         <ChevronRight className="w-5 h-5" />
       </button>
     </div>
   );
 };
+
