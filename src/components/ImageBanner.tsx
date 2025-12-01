@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import type { Swiper as SwiperType } from "swiper";
 
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -101,7 +102,7 @@ export const ImageBanner2 = () => {
   const deskBanners = clientbanners.find((b) => b.type === "desk")?.images || [];
 
   const [current, setCurrent] = useState(0);
-  const [swiperRef, setSwiperRef] = useState<any>(null);
+  const [swiperRef, setSwiperRef] = useState<SwiperType|null>(null);
 
   const slides = ismobile ? mobBanners : deskBanners;
 
