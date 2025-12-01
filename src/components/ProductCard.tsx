@@ -191,17 +191,17 @@ export const ProductCard = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        <span className=" text-gray-800 text-lg font-semibold line-clamp-2 truncate">
+        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
-       <div className=" flex gap-2 items-center">
-          <div className=" text-gray-900 text-lg font-semibold">
+        <div className=" flex gap-2 items-center">
+          <div className=" text-gray-900 text-[16px] font-semibold">
             ₹{product.price}
           </div>
-          <span className=" text-gray-500 text-lg line-through  ">
+          <span className=" text-gray-500 text-[16px] line-through  ">
             ₹{product.price + (product.discount * product.price) / 100}
           </span>
-          <span className=" text-sm flex items-center justify-center text-green-500">
+          <span className=" text-[15px] flex items-center justify-center text-green-500">
             {product.discount}%Off
           </span>
         </div>
@@ -370,17 +370,19 @@ export const ProductCardType2 = ({
       <div
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
-      ><span className=" text-gray-800 text-lg font-semibold line-clamp-2 truncate">
+      >
+        {" "}
+        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
-       <div className=" flex gap-2 items-center">
-          <div className=" text-gray-900 text-lg font-semibold">
+        <div className=" flex gap-2 items-center">
+          <div className=" text-gray-900 text-[16px] font-semibold">
             ₹{product.price}
           </div>
-          <span className=" text-gray-500 text-lg line-through  ">
+          <span className=" text-gray-500 text-[16px] line-through  ">
             ₹{product.price + (product.discount * product.price) / 100}
           </span>
-          <span className=" text-sm flex items-center justify-center text-green-500">
+          <span className=" text-[15px] flex items-center justify-center text-green-500">
             {product.discount}%Off
           </span>
         </div>
@@ -556,14 +558,14 @@ export const ProductCard3 = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        <span className=" text-gray-800 text-[18px] font-semibold line-clamp-2 ">
+        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
-       <div className=" flex gap-2 items-center">
-          <div className=" text-gray-900 text-[17px] font-semibold">
+        <div className=" flex gap-2 items-center">
+          <div className=" text-gray-900 text-[16px] font-semibold">
             ₹{product.price}
           </div>
-          <span className=" text-gray-500 text-[17px] line-through  ">
+          <span className=" text-gray-500 text-[16px] line-through  ">
             ₹{product.price + (product.discount * product.price) / 100}
           </span>
           <span className=" text-[15px] flex items-center justify-center text-green-500">
