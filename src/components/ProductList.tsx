@@ -361,13 +361,13 @@ export const ProductsGrid = ({
                 <div
                   key={i}
                   onClick={() => {
-                    router.push(`/listingpage/`);
+                    router.push(`/listingPage/`);
                   }}
-                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70  hover:scale-105"
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70  hover:scale-105 cursor-pointer"
                   }`}
                 >
                   <item.icon className="size-4" />
-                  <div className=" text-xs font-semibold truncate">
+                  <div className=" text-xs font-semibold truncate cursor-pointer">
                     {item.title}
                   </div>
                 </div>

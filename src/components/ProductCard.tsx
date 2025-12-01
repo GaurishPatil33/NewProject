@@ -194,7 +194,7 @@ export const ProductCard = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
+        <span className=" text-gray-800 text-[16px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
         <div className=" flex gap-2 items-center">
@@ -377,7 +377,7 @@ export const ProductCardType2 = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
+        <span className=" text-gray-800 text-[16px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
         <div className=" flex gap-2 items-center">
@@ -566,7 +566,7 @@ export const ProductCard3 = ({
         className=" px-1 mt-1"
         onClick={() => router.push(`/product/${product.id}`)}
       >
-        <span className=" text-gray-800 text-[17px] font-semibold line-clamp-2 ">
+        <span className=" text-gray-800 text-[16px] font-semibold line-clamp-2 ">
           {product.title}
         </span>
         <div className=" flex gap-2 items-center">

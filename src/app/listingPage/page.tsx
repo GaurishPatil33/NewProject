@@ -771,7 +771,7 @@ const ListingPageContent = () => {
                     setFilters(updatedFilters);
                     updateUrlParams(updatedFilters, {});
                   }}
-                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70  ${
+                  className={` flex items-center w-full justify-center rounded-full border px-2 py-1 gap-1 transition-all duration-150 text-[#900001]/70 cursor-pointer  ${
                     isActive ? "scale-105 " : "hover:scale-105"
                   }`}
                 >
