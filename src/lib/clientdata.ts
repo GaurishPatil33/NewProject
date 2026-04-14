@@ -1,7 +1,7 @@
 export const client1 = {
     data: {
-        name: "CHHABI",
-        logo: "/client1/logo/chabi.png"
+        name: "KANGAN",
+        logo: "/client1/logo/kangan.jpeg"
     }
     ,
     banners: [

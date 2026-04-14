@@ -133,7 +133,7 @@ const Navbar = () => {
                   alt="Logo"
                   width={48}
                   height={48}
-                  className=" size-full rounded-full object-contain "
+                  className=" size-full rounded-full object-cover scale-110 "
                   // priority
                 />
               </motion.div>

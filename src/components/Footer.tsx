@@ -12,7 +12,8 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { useState } from "react";
-
+const clientlogo = client1.data.logo;
+const clientname = client1.data.name;
 const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = useState(null);
 
@@ -58,14 +59,14 @@ const Footer = () => {
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="relative">
                     <img
-                      src={`/client1/logo/chabi.png`}
+                      src={clientlogo}
                       alt="CHHABI Logo"
                       className="w-12 h-12 rounded-full ring-2 ring-white/20 ring-offset-2 ring-offset-transparent"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500/20 to-purple-500/20 blur-sm"></div>
                   </div>
                   <span className="text-2xl font-bold bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent">
-                    CHHABI
+                    {clientname}
                   </span>
                 </div>
                 <p className="text-gray-300 leading-relaxed mb-6">
@@ -179,11 +180,10 @@ const Footer = () => {
                           className={`
                           w-12 h-12 rounded-full flex items-center justify-center 
                           transition-all duration-300 cursor-pointer
-                          ${
-                            hoveredSocial === index
+                          ${hoveredSocial === index
                               ? `bg-gradient-to-r ${social.color} shadow-lg shadow-red-500/25`
                               : "bg-gray-700/50 hover:bg-gray-600/50"
-                          }
+                            }
                           transform hover:scale-110 hover:-translate-y-1
                         `}
                         >
