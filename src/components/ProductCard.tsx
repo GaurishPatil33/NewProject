@@ -137,7 +137,7 @@ export const ProductCard = ({
             transition={{ duration: 0.4 }}
             className="absolute inset-0 w-full h-full object-cover "
           />
-          {product.video && (
+          {/* {product.video && (
             <motion.video
               key="video"
               ref={videoRef}
@@ -157,7 +157,7 @@ export const ProductCard = ({
               className="absolute inset-0 w-full h-full object-cover hover:scale-102 "
               onEnded={() => setShowVideo(false)}
             />
-          )}
+          )} */}
         </div>
 
         <motion.div
@@ -443,24 +443,24 @@ export const ProductCard3 = ({
       return;
     }
 
-    if (product.video) {
-      // video exists, play it
-      setShowVideo(true);
-      videoRef.current!.currentTime = 0;
-      videoRef.current!.play().catch(() => {});
+    // if (product.video) {
+    //   // video exists, play it
+    //   setShowVideo(true);
+    //   videoRef.current!.currentTime = 0;
+    //   videoRef.current!.play().catch(() => {});
 
-      const timer = setTimeout(() => {
-        onActiveChange?.((index ?? 0) + 1);
-      }, 7000);
+    //   const timer = setTimeout(() => {
+    //     onActiveChange?.((index ?? 0) + 1);
+    //   }, 7000);
 
-      return () => clearTimeout(timer);
-    } else {
-      // no video, skip to next card after short delay
-      const timer = setTimeout(() => {
-        onActiveChange?.((index ?? 0) + 1);
-      }, 3000); // 1s delay, adjust as needed
-      return () => clearTimeout(timer);
-    }
+    //   return () => clearTimeout(timer);
+    // } else {
+    //   // no video, skip to next card after short delay
+    //   const timer = setTimeout(() => {
+    //     onActiveChange?.((index ?? 0) + 1);
+    //   }, 3000); // 1s delay, adjust as needed
+    //   return () => clearTimeout(timer);
+    // }
   }, [isActive, product.video]);
 
   const handleWishlistToggle = () => {
@@ -504,7 +504,7 @@ export const ProductCard3 = ({
             transition={{ duration: 0.4 }}
             className="absolute inset-0 w-full h-full object-cover "
           />
-          {product.video && (
+          {/* {product.video && (
             <motion.video
               key="video"
               ref={videoRef}
@@ -529,7 +529,7 @@ export const ProductCard3 = ({
                 }, 500);
               }}
             />
-          )}
+          )} */}
         </div>
 
         <motion.div
